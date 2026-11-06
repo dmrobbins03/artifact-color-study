@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover" />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@500&display=swap"
 />
 <!--
   SWATCH TEMPLATE
@@ -197,7 +197,7 @@
     padding: 44px 16px;
     display: grid;
     position: relative;
-    --chip: 22px;
+    --chip: 28px;
   }
   .sw .stage .c {
     aspect-ratio: auto;
@@ -221,8 +221,8 @@
     outline-offset: -2px;
   }
   .chips button {
-    width: var(--chip, 22px);
-    height: var(--chip, 22px);
+    width: var(--chip, 28px);
+    height: var(--chip, 28px);
   }
   .bwrap {
     position: absolute;
@@ -292,8 +292,8 @@
   .sw .opt,
   .sw .srow {
     display: grid;
-    grid-template-columns: 12px minmax(0, 1fr) auto;
-    gap: 8px;
+    grid-template-columns: 25px minmax(0, 1fr) auto;
+    gap: 12px;
     align-items: center;
     padding: 4px 6px;
     margin-inline: -7px;
@@ -343,7 +343,7 @@
   .sw .sg > .srow:not(:first-child)::before {
     content: '';
     position: absolute;
-    left: 5.5px;
+    left: 12px;
     width: 1px;
     background: var(--muted);
     opacity: 0.55;
@@ -407,8 +407,9 @@
   }
   .sw .opt i,
   .sw .srow i {
-    width: 12px;
-    height: 12px;
+    justify-self: center;   /* swatches center in a 25px column, which the theme marks fill */
+    width: 15px;
+    height: 15px;
     border-radius: 3px;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
   }
@@ -604,9 +605,38 @@
     gap: 8px;
     min-height: 24px;
   }
-  .cgrp .stchips { gap: 2px; border: 0; border-radius: 0; overflow: visible; }
-  .cgrp .stchips button { width: calc(var(--chip, 22px) * 3); border-radius: 3px; box-shadow: 0 0 0 1px var(--bd, transparent); }
-  .cbar .cbreak { flex-basis: 100%; height: 0; }
+  .cgrp .stchips { gap: 4px; border: 0; border-radius: 0; overflow: visible; }
+  .cgrp .stchips button { width: 28px; height: 28px; border-radius: 4px; }
+  /* the Theme pill is two control rows plus the gap tall (2 x 32px + 8px); every other control sits to its right and wraps */
+  /* the Theme pill is two control rows plus the 8px gap tall: a pill is --chip + 10px, so 2 x (--chip + 10px) + 8px;
+     its chips sit in two rows of (--chip + 8px) squares with the same 4px gap both ways and no outline around the set */
+  .cgrp.cth { height: calc(2 * var(--chip, 28px) + 28px); flex-wrap: nowrap; align-self: flex-start; }   /* default; thFit sets the height of the controls beside it */
+  .cgrp.cth .chips.stchips { display: grid; align-content: center; justify-content: center; grid-template-rows: repeat(var(--thr, 2), var(--ths, calc(var(--chip, 28px) + 8px))); grid-auto-flow: column; grid-auto-columns: var(--ths, calc(var(--chip, 28px) + 8px)); gap: 4px; border: 0; border-radius: 0; }
+  .cgrp.cth .stchips button { width: 100%; height: 100%; border-radius: 4px; font-size: var(--ths, calc(var(--chip, 28px) + 8px)); }
+  .cgrp.cth .stchips .mk { font-size: inherit; }
+  .crest { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; flex: 1 1 0; min-width: 200px; }   /* rows, not a line break, so row gap = column gap */
+  .crow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; max-width: 100%; }
+  .crow:empty { display: none; }
+  .cgrp.cth { align-items: flex-start; }
+  .cgrp.cth > .blab { line-height: calc(var(--chip, 28px) + 2px); }   /* label sits where it does in a one-row pill, level with the Background label beside it */
+  .sw .mk { position: absolute; inset: 0; display: block; overflow: hidden; border-radius: inherit; font-size: 28px; line-height: 1; pointer-events: none; }
+  .sw .mki .mk { font-size: 25px; }
+  .sw .mk::after { content: ''; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px var(--tbd); }   /* the theme's own border color (card border, or the section's default border) */
+  .stchips button, .sw .mki { position: relative; }
+  /* theme mark: "A" headline, "a" body, accent underline the width of the text; a bottom strip in the primary button color with a
+     line in its text color, the same shape as the underline (a hidden "Aa" sizes it) */
+  .sw .mk { display: flex; flex-direction: column; }   /* upper area centers "Aa" and its underline; the button strip sits below */
+  .sw .mk b, .sw .mk u { font: 500 0.46em/0.75 Inter, system-ui, -apple-system, sans-serif; letter-spacing: -0.01em; text-decoration: none; }
+  .sw .mk b { flex: 1; display: flex; align-items: center; justify-content: center; margin: 0; padding: 0 0 0.12em; }
+  .sw .mk .tw { position: relative; display: inline-block; padding-bottom: 0.3em; }   /* line-height .75 makes the box run cap top to baseline in Inter */
+  .sw .mk .tw em { font-style: normal; }
+  .sw .mk b .tw { top: 3px; }   /* nudged 3px lower (11-06) */
+  .sw .mk .tw s { position: absolute; left: 0; right: 0; bottom: 0; height: 0.14em; min-height: 1px; border-radius: 2px; }
+  .sw .mk u { flex: none; height: calc(26% - 1px); border-radius: inherit; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .sw .mk u .tw { color: transparent; height: 0.14em; padding: 0; line-height: 0; }
+  .sw .mk u .tw s { bottom: 0; }
+  .sw .opt i.mki, .sw .srow i.mki { width: 25px; height: 25px; margin-inline: 0; border-radius: 3px; box-shadow: none; }
+  .cbar .cbreak, .cgrid .cbreak, .crest .cbreak { flex-basis: 100%; height: 0; }
   .cbar.top {
     padding-left: 32px;
     justify-content: flex-start;
@@ -616,7 +646,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    align-items: center;
+    align-items: flex-start;
   }
   .ctitle {
     flex-basis: 100%;
@@ -639,7 +669,7 @@
   .sw .sbox {
     display: grid;
     gap: 6px;
-    padding: 8px 10px;
+    padding: 10px 16px;
     border: 1px solid var(--line);
     border-radius: 8px;
   }
@@ -742,6 +772,10 @@
     margin: 0;
     font: 400 15px/1.5 var(--body);
   }
+  .lay > .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: -6px 0 22px; }
+  .lay .cbtns { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lay .cta.sec { background: transparent; border: 1.5px solid; padding: 6.5px 16.5px; }   /* secondary: transparent, outlined in its container color */
+  .lay .cta,
   .lay .cd .cta {
     justify-self: start;
     font: 600 13px var(--body);
@@ -772,7 +806,7 @@
   .pbar .pick svg{flex:none;transition:transform .15s}
   .pbar .pick[aria-expanded="true"] svg{transform:rotate(180deg)}
   .pbar .strip{display:flex;flex:none;justify-self:start;border-radius:4px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.12)}
-  .pbar .strip i{width:14px;height:18px}
+  .pbar .strip i{width:18px;height:22px}
   .pbar .menu{position:absolute;top:calc(100% + 6px);left:max(var(--gut),env(safe-area-inset-left,0px));width:min(560px,calc(100% - 2*var(--gut)));background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 32px rgba(15,23,36,.16);padding:6px;display:grid;gap:2px}
   .pbar .menu[hidden]{display:none}
   .pbar .opt{all:unset;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px 14px;padding:10px 12px;border-radius:7px;cursor:pointer;color:var(--ink)}
@@ -780,8 +814,8 @@
   .pbar .opt[aria-current="true"]{background:var(--accent-soft)}
   .pbar .opt b{font:500 15px var(--body)}
   .pbar .opt small{grid-column:1/-1;font:400 13px/1.4 var(--body);color:var(--muted)}
-  .pbar .opt .strip i{width:20px;height:22px}
-  @media (max-width:560px){.pbar .lbl{display:none}.pbar .pick .strip{display:none}.pbar .opt{grid-template-columns:minmax(0,1fr)}.pbar .opt .strip i{width:16px}}
+  .pbar .opt .strip i{width:25px;height:28px}
+  @media (max-width:560px){.pbar .lbl{display:none}.pbar .pick .strip{display:none}.pbar .opt{grid-template-columns:minmax(0,1fr)}.pbar .opt .strip i{width:20px}}
 
   /* page-order sections are accordions: each band is the summary, its preview and options open underneath */
   .stack details.band>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px max(16px,4vw);border-top:1px solid color-mix(in srgb,currentColor 22%,transparent)}
@@ -820,7 +854,7 @@
   .phead h2{font:400 clamp(26px,2.6vw,34px)/1.15 var(--display);margin:0}
   .pmeta{margin-top:14px;display:flex;align-items:center;gap:10px;font:600 11px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
   .pmeta .strip{display:flex;border-radius:4px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.12)}
-  .pmeta .strip i{width:32px;height:40px}
+  .pmeta .strip i{width:40px;height:40px}
   .pmeta .strip{border-radius:6px}
   .pd{display:grid;gap:12px;max-width:72ch}
   .pd .sub{font-size:17px;line-height:1.55;color:var(--ink);max-width:none}
@@ -845,7 +879,7 @@
 
   /* each selected color is an item: Copy, then Edit, which opens that color's options right under it */
   .sw .sitem{display:grid;gap:6px;border:0;margin:0;padding:0}
-  .sw .sitem>.srow{position:relative;grid-template-columns:12px minmax(0,1fr) auto auto}
+  .sw .sitem>.srow{position:relative;grid-template-columns:25px minmax(0,1fr) auto auto}
   .sw button.edit{display:inline-grid;place-items:center;width:26px;height:24px;padding:0;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);cursor:pointer}
   .sw button.edit:hover{color:var(--ink);border-color:var(--muted)}
   .sw button.edit[aria-expanded="true"]{background:var(--ink);border-color:var(--ink);color:var(--surface)}
@@ -853,7 +887,7 @@
   .sw .sopts{margin:0 0 6px 20px;padding:4px 10px 8px;border-left:1px solid var(--line)}
   .sw .sopts .opts{padding-top:4px}
   /* connector lines between grouped colors now join the items */
-  .sw .sg>.sitem:not(:last-child)>.srow::after,.sw .sg>.sitem:not(:first-child)>.srow::before{content:'';position:absolute;left:5.5px;width:1px;background:var(--muted);opacity:.55}
+  .sw .sg>.sitem:not(:last-child)>.srow::after,.sw .sg>.sitem:not(:first-child)>.srow::before{content:'';position:absolute;left:12px;width:1px;background:var(--muted);opacity:.55}
   .sw .sg>.sitem:not(:last-child)>.srow::after{top:calc(75% + 4.5px);bottom:-7px}
   .sw .sg>.sitem:not(:first-child)>.srow::before{top:-1px;bottom:calc(75% + 4.5px)}
   .sw .sg>.sitem.open>.srow::after,.sw .sg>.sitem.open+.sitem>.srow::before{display:none}
@@ -872,7 +906,7 @@
   .hdr{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .guide{border-left:0;padding-left:0}
   @media (max-width:900px){.hdr{grid-template-columns:minmax(0,1fr)}.guide{border-top:1px solid var(--line);padding-top:20px}}
-  @media (max-width:560px){.pmeta .strip i{width:24px;height:32px}}
+  @media (max-width:560px){.pmeta .strip i{width:30px;height:30px}}
   @media (max-width:900px){.phead{grid-template-columns:minmax(0,1fr)}.pd .tech{padding-top:14px;border-top:1px solid var(--line)}}
 
   /* palette heading: the title spans the full width; below it two columns start together, swatches and mood on the left
@@ -903,14 +937,14 @@
   .hdr .hbrand{grid-column:2;grid-row:3;align-content:start}
   .hdr .hbrand h2{margin-top:-2px}
   @media (max-width:900px){.hdr>div:first-child>*,.hdr .hbrand{grid-column:1;grid-row:auto}.hdr .hbrand{margin-top:24px}}
-  .pmeta .strip .sj{all:unset;box-sizing:border-box;display:block;width:32px;height:40px;cursor:pointer}
+  .pmeta .strip .sj{all:unset;box-sizing:border-box;display:block;width:40px;height:40px;cursor:pointer}
   .pmeta .strip .sj:hover{box-shadow:inset 0 -3px 0 rgba(24,46,86,.45)}
   .pmeta .strip .sj:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
-  @media (max-width:560px){.pmeta .strip .sj{width:24px;height:32px}}
+  @media (max-width:560px){.pmeta .strip .sj{width:30px;height:30px}}
   .stack .demo.flash{animation:bandflash 1.2s ease-out}
   @keyframes bandflash{0%,30%{box-shadow:inset 0 0 0 3px rgba(24,46,86,.45)}100%{box-shadow:inset 0 0 0 3px transparent}}
   @media (prefers-reduced-motion:reduce){.stack .demo.flash{animation:none}}
-  .cgrp .chips.stchips{flex-wrap:wrap;row-gap:2px}   /* six 3-wide theme chips wrap instead of overflowing on phones */
+  .cgrp .chips.stchips{flex-wrap:wrap;row-gap:2px}   /* theme chips wrap instead of overflowing on phones */
 </style>
 
 <div class="wrap" id="app"></div>
@@ -1053,6 +1087,17 @@
       ['cb', 'cbd'].forEach((k) => { if (X[k] && X[k].opts[0] !== NONE) X[k] = { ...X[k], opts: [NONE, ...X[k].opts], def: (X[k].def ?? 0) + 1 }; });
     }),
   );
+  /* theme chips draw the theme as one square: fill = background, "A" = headline, underline = accent, top-right square = body */
+  (CONFIG.groups || []).forEach((g) =>
+    (g.swatches || []).forEach((w) => {
+      const X = w.extra; if (!X || !X.th) return;
+      X.th.opts.forEach((t) => {
+        const bg = t.cb && t.cb.opts[t.cb.def] && t.cb.opts[t.cb.def].hex, hl = t.ct && t.ct.opts[t.ct.def || 0] && t.ct.opts[t.ct.def || 0].hex, ac = t.ca && t.ca.opts[0] && t.ca.opts[0].hex;
+        const bd = t.cbd && t.cbd.opts[t.cbd.def] && t.cbd.opts[t.cbd.def].hex;
+        if (hl && ac) { const f = bg && bg !== 'none' ? bg : w.hex; t.bg = f; t.mk = { h: hl, a: ac, b: t.mut || hl, bd: bd && bd !== 'none' ? bd : 'transparent' }; }
+      });
+    }),
+  );
   /* section themes: each sets the section's own headline, body, accent and border together (never the card), so a section can be
      switched as one coordinated set; theme 1 is the recommended defaults */
   (CONFIG.groups || []).forEach((g) =>
@@ -1069,7 +1114,8 @@
         const name = (s) => s.split(' = ')[0];
         opts.push({
           hex: tx.hex,
-          bg: `linear-gradient(90deg,${tx.hex} 0 33.4%,${sb >= 0 ? X.sb.opts[sb].hex : tx.hex} 33.4% 66.7%,${a.hex} 66.7%)`,
+          bg: w.hex,
+          mk: { h: tx.hex, a: a.hex, b: sb >= 0 ? X.sb.opts[sb].hex : tx.hex, bd: B[di] ? B[di].hex : 'transparent' },
           label: `${i ? '' : 'Recommended · '}${name(tx.label)} headline, ${sb >= 0 ? name(X.sb.opts[sb].label) + ' body, ' : ''}${name(a.label.split(' · ')[0]).replace(/ accent$/i, '')} accent`,
           set: { t: i, a: 0, sb, b: di },
         });
@@ -1077,6 +1123,90 @@
       const N = { st: { label: 'Theme', var: '--st', def: 0, opts } };
       for (const k of Object.keys(X)) N[k] = X[k];
       w.extra = N;
+    }),
+  );
+  /* buttons, built only from the colors already chosen (11-06):
+     Primary container = CTA red, the selected accent, the selected headline; a color under 3:1 on the surface is swapped for the
+       nearest step of its own family that passes. Primary text = background, headline or body at 7:1 on the container
+       (white / ink only as a fallback).
+     Secondary (transparent, outlined) outline = the Primary container, headline or accent at 3:1; its text = Primary text,
+       Primary container, headline, body or accent at 7:1 on the surface.
+     The lists are rebuilt whenever a color they come from changes (syncButtons). */
+  const HX = /^#[0-9a-f]{6}$/i;
+  const uniq = (L) => { const s = new Set(); return L.filter((o) => o && HX.test(o.hex) && !s.has(o.hex.toUpperCase()) && s.add(o.hex.toUpperCase())); };
+  const nm = (s) => String(s || '').split(' = ')[0].split(' · ')[0].split(' (')[0];
+  const lumB = (x) => { const n = parseInt(x.slice(1), 16), f = (v) => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(n >> 16) + 0.7152 * f((n >> 8) & 255) + 0.0722 * f(n & 255); };
+  const near = (o, fam, bg) => {   /* the color itself if it reaches 3:1, else the closest step of its family that does */
+    if (ratio(o.hex, bg) >= 3) return o;
+    const c = fam.filter((f) => HX.test(f.hex) && ratio(f.hex, bg) >= 3).sort((a, b) => Math.abs(lumB(a.hex) - lumB(o.hex)) - Math.abs(lumB(b.hex) - lumB(o.hex)))[0];
+    return c ? { ...c, label: o.label + ' step' } : null;
+  };
+  /* s = { bg, hl, body, acc, accFam, hlFam, ctaFam } current colors; pi/si: chosen indexes (or -1 for the default) */
+  function buildBtns(s, pick = {}) {
+    const cta = s.ctaFam.find((o) => /cta/i.test(o.label)) || s.ctaFam[0];
+    const P = uniq([
+      cta && near({ hex: cta.hex, label: 'CTA ' + nm(cta.label).replace(/^CTA /i, '') }, s.ctaFam, s.bg),
+      s.acc && near({ hex: s.acc.hex, label: 'Accent · ' + nm(s.acc.label) }, s.accFam, s.bg),
+      s.hl && near({ hex: s.hl.hex, label: 'Headline · ' + nm(s.hl.label) }, s.hlFam, s.bg),
+    ]);
+    const pi = pick.p != null ? Math.max(0, P.findIndex((o) => o.hex === pick.p)) : 0;
+    const pc = P[pi];
+    const txt = (on) => {
+      const L = uniq([{ hex: s.bg, label: 'Background' }, s.hl && { hex: s.hl.hex, label: 'Headline' }, s.body && { hex: s.body.hex, label: 'Body' }]).filter((o) => ratio(o.hex, on) >= 7);
+      return L.length ? L : uniq([{ hex: '#FFFFFF', label: 'White' }, { hex: '#0B1B33', label: 'Ink' }]).filter((o) => ratio(o.hex, on) >= 4.5).slice(0, 1);
+    };
+    const PT = pc ? txt(pc.hex) : [];
+    const ti = pick.pt != null ? Math.max(0, PT.findIndex((o) => o.hex === pick.pt)) : 0;
+    const pt = PT[ti];
+    const S = uniq([pc && { hex: pc.hex, label: 'Primary' }, s.hl && { hex: s.hl.hex, label: 'Headline' }, s.acc && { hex: s.acc.hex, label: 'Accent' }]).filter((o) => ratio(o.hex, s.bg) >= 3);
+    const si = pick.s != null ? Math.max(0, S.findIndex((o) => o.hex === pick.s)) : 0;
+    const ST = uniq([pt && { hex: pt.hex, label: 'Primary text' }, pc && { hex: pc.hex, label: 'Primary' }, s.hl && { hex: s.hl.hex, label: 'Headline' }, s.body && { hex: s.body.hex, label: 'Body' }, s.acc && { hex: s.acc.hex, label: 'Accent' }]).filter((o) => ratio(o.hex, s.bg) >= 7);
+    const sti = pick.st != null ? Math.max(0, ST.findIndex((o) => o.hex === pick.st)) : 0;
+    return { P, pi, PT, ti, S, si, ST, sti };
+  }
+  const famOf = (L, o) => (o ? L.filter((x) => nm(x.label) === nm(o.label)) : []);
+  (CONFIG.groups || []).forEach((g) =>
+    (g.swatches || []).forEach((w) => {
+      const X = w.extra, T = w.texts || [];
+      if (!X || !w.layout || !X.th) return;
+      const ccAll = uniq(X.th.opts.flatMap((t) => (t.cc ? t.cc.opts : []))), A0 = X.a ? X.a.opts : [];
+      X.th.opts.forEach((t) => { if (t.cc) t.cc0 = t.cc.opts; });
+      /* card: the starting theme; applyTheme / syncButtons rebuild for other picks */
+      const t0 = X.th.opts[X.th.def || 0];
+      const cbg0 = t0.cb && t0.cb.opts[t0.cb.def] && t0.cb.opts[t0.cb.def].hex;
+      const CA = X.ca ? X.ca.opts.flatMap((o) => (Array.isArray(o) ? unA([o]) : [o])) : [];
+      const cs0 = {
+        bg: cbg0 && cbg0 !== 'none' ? cbg0 : w.hex, hl: X.ct && X.ct.opts[X.ct.def || 0], body: X.cp ? X.cp.opts[X.cp.def || 0] : t0.mut && { hex: t0.mut, label: 'Body' },
+        acc: CA[X.ca ? X.ca.def || 0 : 0], accFam: famOf(CA, CA[X.ca ? X.ca.def || 0 : 0]), hlFam: X.ct ? X.ct.opts : [], ctaFam: t0.cc0 || [],
+      };
+      const cbB = buildBtns(cs0);
+      if (cbB.P.length) {
+        X.cc = { ...X.cc, label: 'Card primary', opts: cbB.P, def: cbB.pi, pair: 'cf' };
+        X.cf = { label: 'Card primary text', var: '--ctaf', opts: cbB.PT, def: cbB.ti };
+      }
+      /* theme marks show each theme's default primary button */
+      X.th.opts.forEach((t) => {
+        if (!t.mk) return;
+        const b0 = t.cb && t.cb.opts[t.cb.def] && t.cb.opts[t.cb.def].hex, CA2 = t.ca ? t.ca.opts.flatMap((o) => (Array.isArray(o) ? unA([o]) : [o])) : [];
+        const ct = t.ct ? t.ct.opts[t.ct.def || 0] : null;
+        const B = buildBtns({ bg: b0 && b0 !== 'none' ? b0 : w.hex, hl: ct, body: t.cp ? t.cp.opts[t.cp.def || 0] : t.mut && { hex: t.mut, label: 'Body' },
+          acc: CA2[0], accFam: famOf(CA2, CA2[0]), hlFam: t.ct ? t.ct.opts : [], ctaFam: t.cc0 || [] });
+        if (B.P[B.pi]) { t.mk.p = B.P[B.pi].hex; t.mk.pt = (B.PT[B.ti] || {}).hex; }
+      });
+      if (X.st) X.st.opts.forEach((o) => {
+        if (!o.mk || !o.set) return;
+        const tx = T[o.set.t], Aa = tx && tx.accs ? unA(tx.accs) : A0, ac = Aa[o.set.a] || Aa[0];
+        const B = buildBtns({ bg: w.hex, hl: tx, body: X.sb && o.set.sb >= 0 ? X.sb.opts[o.set.sb] : null, acc: ac, accFam: famOf(Aa, ac), hlFam: T, ctaFam: ccAll });
+        if (B.P[B.pi]) { o.mk.p = B.P[B.pi].hex; o.mk.pt = (B.PT[B.ti] || {}).hex; }
+      });
+      if (cbB.S.length) { X.cs = { label: 'Card secondary', var: '--cs2', opts: cbB.S, def: cbB.si, pair: 'csf' }; X.csf = { label: 'Card secondary text', var: '--cs2f', opts: cbB.ST, def: cbB.sti }; }
+      /* section */
+      const A = X.a ? X.a.opts : [];
+      const ss = { bg: w.hex, hl: T[0], body: X.sb ? X.sb.opts[X.sb.def] : null, acc: A[X.a ? X.a.def || 0 : 0], accFam: famOf(A, A[X.a ? X.a.def || 0 : 0]), hlFam: T, ctaFam: ccAll };
+      const sB = buildBtns(ss);
+      if (sB.P.length) { X.pb = { label: 'Primary', var: '--pb', opts: sB.P, def: sB.pi, pair: 'pbf' }; X.pbf = { label: 'Primary text', var: '--pbf', opts: sB.PT, def: sB.ti }; }
+      if (sB.S.length) { X.ps = { label: 'Secondary', var: '--ps', opts: sB.S, def: sB.si, pair: 'psf' }; X.psf = { label: 'Secondary text', var: '--psf', opts: sB.ST, def: sB.sti }; }
+      if (X.pb) X.pb.ctaFam = ccAll;
     }),
   );
   (CONFIG.groups || []).forEach((g) => {
@@ -1114,32 +1244,35 @@
         [gl, gc, gb] = grade(r);
       const chips = (k, L, sel, cls) =>
         L.length
-          ? `<span class="chips ${cls}">${L.map((o, i) => `<button type="button" data-k="${k}" data-i="${i}" aria-pressed="${i === sel}" style="background:${swBg(o)}" title="${esc(o.label)} ${o.hex}" aria-label="Preview ${{ b: 'border', o: 'overlay', t: 'text color' }[k] || ''} ${esc(o.label)} ${o.hex}"></button>`).join('')}</span>`
+          ? `<span class="chips ${cls}">${L.map((o, i) => `<button type="button" data-k="${k}" data-i="${i}" aria-pressed="${i === sel}" style="background:${swBg(o)}" title="${esc(o.label)} ${o.hex}" aria-label="Preview ${{ b: 'border', o: 'overlay', t: 'text color' }[k] || ''} ${esc(o.label)} ${o.hex}">${mk(o)}</button>`).join('')}</span>`
           : '';
       const acc = (k, title, L, sel, vs, ref = w.hex) =>
         L.length
-          ? `<details class="acc"><summary>${title}<span class="cur">${sel >= 0 ? L[sel].hex : ''}</span></summary><div class="opts">${L.map((o, i) => `<span class="opt${i === sel ? ' on' : ''}" data-k="${k}" data-i="${i}"><i style="background:${swBg(o)}"></i><span class="bl"><span>${o.hex}</span><small>${esc(o.label)}${rt(o.hex, ref, vs)}</small></span><button class="copy" type="button" data-hex="${o.hex}">Copy</button></span>`).join('')}</div></details>`
+          ? `<details class="acc"><summary>${title}<span class="cur">${sel >= 0 ? L[sel].hex : ''}</span></summary><div class="opts">${L.map((o, i) => `<span class="opt${i === sel ? ' on' : ''}" data-k="${k}" data-i="${i}"><i style="background:${swBg(o)}"${o.mk ? ' class="mki"' : ''}>${mk(o)}</i><span class="bl"><span>${o.hex}</span><small>${esc(o.label)}${rt(o.hex, ref, vs)}</small></span><button class="copy" type="button" data-hex="${o.hex}">Copy</button></span>`).join('')}</div></details>`
           : '';
-      const srow = (k, role, hex, lab) =>
-        `<span class="srow" data-s="${k}"><i style="background:${swBg({ hex })}"></i><span class="bl"><span>${hex}</span><small>${role} · ${esc(lab)}</small></span><button class="copy" type="button" data-hex="${hex}">Copy</button></span>`;
+      const srow = (k, role, hex, lab, o) =>
+        `<span class="srow" data-s="${k}"><i style="background:${swBg(o && o.mk ? o : { hex })}"${o && o.mk ? ' class="mki"' : ''}>${o ? mk(o) : ''}</i><span class="bl"><span>${hex}</span><small>${role} · ${esc(lab)}</small></span><button class="copy" type="button" data-hex="${hex}">Copy</button></span>`;
       const stg = !!(w.on && !w.text),
         LY = w.layout;
       const X = w.extra || {},
         XK = Object.keys(X),
         cur = (k) => X[k].opts[X[k].def].hex;
       const lay = (cls) =>
-        `<div class="lay ${cls}"><div class="eb" style="color:var(--acc)">${esc(LY.eyebrow)}</div><h3 class="hl">${esc(LY.h)}</h3><p class="sp" style="color:var(--sbody)">${esc(LY.body || CONFIG.sectionBody || 'Supporting copy sits under the headline at body size, so its color can be judged against the section.')}</p><div class="cd" style="background:var(--cbg);border-color:var(--cbd)"><div class="eb" style="color:var(--cacc)">${esc(LY.eyebrow)}</div><h4 class="hl" style="color:var(--ctx)">${esc(LY.cardH)}</h4><p style="color:var(--cmut)">${esc(LY.cardP)}</p><span class="cta" style="background:var(--cta);color:var(--ctaf,#fff)">${esc(LY.ctaLabel)}</span></div></div>`;
-      const CO = ['th', 'cb', 'cbd', 'ct', 'cp', 'ca', 'cc'],
+        `<div class="lay ${cls}"><div class="eb" style="color:var(--acc)">${esc(LY.eyebrow)}</div><h3 class="hl">${esc(LY.h)}</h3><p class="sp" style="color:var(--sbody)">${esc(LY.body || CONFIG.sectionBody || 'Supporting copy sits under the headline at body size, so its color can be judged against the section.')}</p>${X.pb || X.ps ? `<div class="btns">${X.pb ? `<span class="cta" style="background:var(--pb);color:var(--pbf)">${esc(LY.sectionCta || 'Take action')}</span>` : ''}${X.ps ? `<span class="cta sec" style="border-color:var(--ps);color:var(--psf)">${esc(LY.sectionCta2 || 'Learn more')}</span>` : ''}</div>` : ''}<div class="cd" style="background:var(--cbg);border-color:var(--cbd)"><div class="eb" style="color:var(--cacc)">${esc(LY.eyebrow)}</div><h4 class="hl" style="color:var(--ctx)">${esc(LY.cardH)}</h4><p style="color:var(--cmut)">${esc(LY.cardP)}</p><div class="cbtns"><span class="cta" style="background:var(--cta);color:var(--ctaf,#fff)">${esc(LY.ctaLabel)}</span>${X.cs ? `<span class="cta sec" style="border-color:var(--cs2);color:var(--cs2f)">${esc(LY.ctaLabel2 || 'Learn more')}</span>` : ''}</div></div></div>`;
+      const CO = ['th', 'cb', 'cbd', 'ct', 'cp', 'ca', 'cc', 'cf', 'cs', 'csf'],
+        SBK = ['pb', 'pbf', 'ps', 'psf'],   /* section buttons */
         TG = ['ct', 'cp', 'ca'],
         CK = [
           ...CO.filter((k) => XK.includes(k)),
-          ...XK.filter((k) => k !== 'a' && k !== 'sb' && k !== 'st' && !CO.includes(k)),
+          ...XK.filter((k) => k !== 'a' && k !== 'sb' && k !== 'st' && !CO.includes(k) && !SBK.includes(k)),
         ];
       const sg = (h) => (h ? `<div class="sg">${h}</div>` : ''),
         cardKeys = (f) =>
-          CK.filter((k) => !TG.includes(k) || k === 'ct' || !XK.includes('ct'))
+          CK.filter((k) => (!TG.includes(k) || k === 'ct' || !XK.includes('ct')) && k !== 'cf' && k !== 'csf')
             .map((k) =>
-              k === 'ct'
+              k === 'cc' || k === 'cs'
+                ? sg(f(k) + (XK.includes(X[k].pair) ? f(X[k].pair) : ''))   /* container and its text, connected */
+                : k === 'ct'
                 ? sg(
                     TG.filter((t) => XK.includes(t))
                       .map(f)
@@ -1152,7 +1285,7 @@
         const t = X[k].label.replace(/^Card /, '');
         return t.charAt(0).toUpperCase() + t.slice(1);
       };
-      const xrow = (k) => srow(k, lb(k), cur(k), X[k].opts[X[k].def].label);
+      const xrow = (k) => srow(k, lb(k), cur(k), X[k].opts[X[k].def].label, X[k].opts[X[k].def]);
       const cacc = (k) => {
         const sec = ['cb', 'cbd'].includes(k);
         return acc(
@@ -1165,10 +1298,15 @@
         );
       };
       const selLY = () =>
-        `<span class="sh">Section controls</span><div class="sbox">${XK.includes('st') ? xrow('st') : ''}${srow('bg', 'Background', w.hex, 'Original')}${B.length ? srow('bd', 'Border', B[di].hex, B[di].label) : ''}${sg((T.length ? srow('tx', 'Headline', T[0].hex, T[0].label) : '') + (XK.includes('sb') ? xrow('sb') : '') + (XK.includes('a') ? xrow('a') : ''))}</div>${CK.length ? '<span class="sh">Card themes</span><div class="sbox">' + cardKeys(xrow) + '</div>' : ''}`;
-      const grp = (lab, h) =>
+        `<span class="sh">Section controls</span><div class="sbox">${XK.includes('st') ? xrow('st') : ''}${srow('bg', 'Background', w.hex, 'Original')}${B.length ? srow('bd', 'Border', B[di].hex, B[di].label) : ''}${sg((T.length ? srow('tx', 'Headline', T[0].hex, T[0].label) : '') + (XK.includes('sb') ? xrow('sb') : '') + (XK.includes('a') ? xrow('a') : ''))}${['pb', 'ps'].map((k) => (XK.includes(k) ? sg(xrow(k) + (XK.includes(X[k].pair) ? xrow(X[k].pair) : '')) : '')).join('')}</div>${CK.length ? '<span class="sh">Card controls</span><div class="sbox">' + cardKeys(xrow) + '</div>' : ''}`;
+      const grp = (lab, h, cls = '') =>
         h
-          ? `<span class="cgrp" style="color:${autoFg(w.on)}"><span class="blab">${lab}</span>${h}</span>`
+          ? `<span class="cgrp${cls ? ' ' + cls : ''}" style="color:${autoFg(w.on)}"><span class="blab">${lab}</span>${h}</span>`
+          : '';
+      /* a button pill: container chips, then its connected Text chips */
+      const bpair = (k, lab) =>
+        XK.includes(k)
+          ? grp(lab, chips(k, X[k].opts, X[k].def, 'xchips') + (XK.includes(X[k].pair) ? `<i class="cdiv"></i><span class="blab">Text</span>${chips(X[k].pair, X[X[k].pair].opts, X[X[k].pair].def, 'xchips')}` : ''))
           : '';
       const xvars = LY
         ? `;--cmut:${LY.muted};--ctaf:${(X.cc && X.cc.opts[X.cc.def].fg) || '#FFFFFF'};` +
@@ -1185,16 +1323,20 @@
       d.className = 'sw' + (LY ? ' wide' : '');
       d.innerHTML =
         (w.on && !w.text
-          ? `<div class="stage"${LY ? ' data-n="26" data-off="380"' : ''} style="background:${w.on}">${B.length || O.length ? `<button class="reset" type="button" hidden style="color:${autoFg(w.on)}" aria-label="Reset to the recommended colors" title="Reset to the recommended colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></button>` : ''}${LY ? `<div class="cbar top"><span class="ctitle" style="color:${autoFg(w.on)}">Section controls</span>${XK.includes('st') ? grp('Theme', chips('st', X.st.opts, X.st.def, 'xchips stchips')) : ''}${grp('Background', chips('o', O, -1, 'ochips'))}${grp('Border', chips('b', B, di, 'bchips'))}<span class="cbreak"></span>${grp('Headline', chips('t', T, 0, 'tchips') + (XK.includes('sb') ? `<i class="cdiv"></i><span class="blab">${X.sb.label}</span>${chips('sb', X.sb.opts, X.sb.def, 'xchips')}` : '') + (XK.includes('a') ? `<i class="cdiv"></i><span class="blab">${X.a.label}</span>${chips('a', X.a.opts, X.a.def, 'xchips')}` : ''))}</div>` : ''}${B.length && !LY ? `<span class="bwrap"><span class="blab" style="color:${autoFg(w.on)}">Border options</span>${chips('b', B, di, 'bchips')}</span>` : ''}${tile}${
+          ? `<div class="stage"${LY ? ' data-n="26" data-off="380"' : ''} style="background:${w.on}">${B.length || O.length ? `<button class="reset" type="button" hidden style="color:${autoFg(w.on)}" aria-label="Reset to the recommended colors" title="Reset to the recommended colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></button>` : ''}${LY ? `<div class="cbar top"><span class="ctitle" style="color:${autoFg(w.on)}">Section controls</span>${XK.includes('st') ? grp('Theme', chips('st', X.st.opts, X.st.def, 'xchips stchips'), 'cth') : ''}<div class="crest"><div class="crow">${grp('Background', chips('o', O, -1, 'ochips'))}${grp('Border', chips('b', B, di, 'bchips'))}</div><div class="crow">${grp('Headline', chips('t', T, 0, 'tchips') + (XK.includes('sb') ? `<i class="cdiv"></i><span class="blab">${X.sb.label}</span>${chips('sb', X.sb.opts, X.sb.def, 'xchips')}` : '') + (XK.includes('a') ? `<i class="cdiv"></i><span class="blab">${X.a.label}</span>${chips('a', X.a.opts, X.a.def, 'xchips')}` : ''))}</div>${bpair('pb', 'Primary') || bpair('ps', 'Secondary') ? `<div class="crow">${bpair('pb', 'Primary')}${bpair('ps', 'Secondary')}</div>` : ''}</div></div>` : ''}${B.length && !LY ? `<span class="bwrap"><span class="blab" style="color:${autoFg(w.on)}">Border options</span>${chips('b', B, di, 'bchips')}</span>` : ''}${tile}${
               LY
-                ? `<div class="cgrid"><span class="ctitle" style="color:${autoFg(w.on)}">Card themes</span>${XK.filter(
+                ? `<div class="cgrid"><span class="ctitle" style="color:${autoFg(w.on)}">Card controls</span>${XK.includes('th') ? grp(X.th.label.replace(/^Card /, ''), chips('th', X.th.opts, X.th.def, 'xchips stchips'), 'cth') : ''}<div class="crest"><div class="crow">${XK.filter(
                     (k) =>
                       k !== 'a' &&
                       k !== 'sb' &&
                       k !== 'st' &&
+                      k !== 'th' &&
+                      !['cf', 'cs', 'csf', ...SBK].includes(k) &&
                       !((k === 'ca' || k === 'cp') && XK.includes('ct')),
                   )
                     .map((k) =>
+                      k === 'cc' ? `</div><div class="crow">${bpair('cc', 'Primary')}${bpair('cs', 'Secondary')}` :
+                      (k === 'ct' ? '</div><div class="crow">' : '') +   /* text group and Button each start their own line */
                       grp(
                         X[k].label.replace(/^Card /, ''),
                         chips(k, X[k].opts, X[k].def, 'xchips') +
@@ -1206,13 +1348,13 @@
                             : ''),
                       ),
                     )
-                    .join('')}</div>`
+                    .join('')}</div></div></div>`
                 : ''
             }${T.length && !LY ? `<span class="twrap"><span class="blab" style="color:${autoFg(w.on)}">Text options</span>${chips('t', T, 0, 'tchips')}</span>` : ''}</div>`
           : tile) +
         `<div class="meta"><b>${w.hex}<button class="copy" type="button" data-hex="${w.hex}">Copy</button></b>
       <span><span class="nm">${esc(w.name)}</span>${w.pick ? '<em class="pick">Pick</em>' : ''}<span class="rt">${r.toFixed(1)}:1</span><span class="grade" style="color:${gc};background:${gb}">${gl}</span></span>
-      <span>${esc(w.use || '')}</span>${w.on && w.on !== w.hex ? `<span>On ${w.on}${sep}</span>` : ''}${B.length || O.length ? `<div class="sel"><span class="bh">Selected colors</span>${LY ? selLY() : `${srow('bg', 'Background', w.hex, 'Original')}${B.length ? srow('bd', 'Border', B[di].hex, B[di].label) : ''}${T.length ? srow('tx', 'Text', T[0].hex, T[0].label) : ''}${XK.map((k) => srow(k, X[k].label, cur(k), X[k].opts[X[k].def].label)).join('')}`}</div>` : ''}${LY ? `<details class="acc"><summary>Section controls</summary><div class="nest">${XK.includes('st') ? acc('st', 'Theme', X.st.opts, X.st.def, 'headline vs fill') : ''}${acc('o', 'Background', O, -1, 'vs fill')}${acc('b', 'Border', B, di, 'vs fill')}${sg(acc('t', 'Headline', T, 0, 'vs fill') + (XK.includes('sb') ? acc('sb', 'Body', X.sb.opts, X.sb.def, 'vs fill') : '') + (XK.includes('a') ? acc('a', 'Accent', X.a.opts, X.a.def, 'vs fill') : ''))}</div></details>` : `${acc('b', 'Border options', B, di, 'vs fill')}${acc('o', 'Background options', O, -1, 'vs fill')}${acc('t', 'Text options', T, 0, 'vs fill')}`}${XK.length > 1 ? `<details class="acc"><summary>Card themes</summary><div class="nest">${cardKeys(cacc)}</div></details>` : ''}</div>`;
+      <span>${esc(w.use || '')}</span>${w.on && w.on !== w.hex ? `<span>On ${w.on}${sep}</span>` : ''}${B.length || O.length ? `<div class="sel"><span class="bh">Selected colors</span>${LY ? selLY() : `${srow('bg', 'Background', w.hex, 'Original')}${B.length ? srow('bd', 'Border', B[di].hex, B[di].label) : ''}${T.length ? srow('tx', 'Text', T[0].hex, T[0].label) : ''}${XK.map((k) => srow(k, X[k].label, cur(k), X[k].opts[X[k].def].label)).join('')}`}</div>` : ''}${LY ? `<details class="acc"><summary>Section controls</summary><div class="nest">${XK.includes('st') ? acc('st', 'Theme', X.st.opts, X.st.def, 'headline vs fill') : ''}${acc('o', 'Background', O, -1, 'vs fill')}${acc('b', 'Border', B, di, 'vs fill')}${sg(acc('t', 'Headline', T, 0, 'vs fill') + (XK.includes('sb') ? acc('sb', 'Body', X.sb.opts, X.sb.def, 'vs fill') : '') + (XK.includes('a') ? acc('a', 'Accent', X.a.opts, X.a.def, 'vs fill') : ''))}${SBK.filter((k) => XK.includes(k)).map((k) => acc(k, lb(k), X[k].opts, X[k].def, 'vs fill')).join('')}</div></details>` : `${acc('b', 'Border options', B, di, 'vs fill')}${acc('o', 'Background options', O, -1, 'vs fill')}${acc('t', 'Text options', T, 0, 'vs fill')}`}${XK.length > 1 ? `<details class="acc"><summary>Card controls</summary><div class="nest">${cardKeys(cacc)}</div></details>` : ''}</div>`;
       if (w.border) d.style.setProperty('--bd', w.border);
       d.dataset.hex = w.hex;
       d.dataset.di = di;
@@ -1246,10 +1388,12 @@
       'beforeend',
       `<p class="note">${esc(CONFIG.footnote)}</p>`,
     );
-  function sel(sw, k, hex, lab) {
+  function sel(sw, k, hex, lab, o) {
     const r = sw.querySelector(`.srow[data-s="${k}"]`);
     if (!r) return;
-    r.querySelector('i').style.background = swBg({ hex });
+    const ri = r.querySelector('i');
+    ri.style.background = swBg(o && o.mk ? o : { hex });
+    if (o && o.mk) ri.innerHTML = mk(o);
     r.querySelector('.bl span').textContent = hex;
     const s = r.querySelector('small');
     s.textContent = s.textContent.split(' · ')[0] + ' · ' + lab;
@@ -1271,6 +1415,10 @@
     );
   }
   /* option swatch fill: a theme's three-band preview, "not used" as a box crossed out in the border color, else the color */
+  function mk(o) {   /* theme mark: "A" headline, "a" body, accent underline, primary button strip with its text-color line */
+    const m = o && o.mk;
+    return m ? `<span class="mk" aria-hidden="true" style="--tbd:${m.bd || 'rgba(0,0,0,.14)'}"><b><span class="tw" style="color:${m.h}">A<em style="color:${m.b}">a</em><s style="background:${m.a}"></s></span></b>${m.p ? `<u style="background:${m.p}"><span class="tw">Aa<s style="background:${m.pt}"></s></span></u>` : ''}</span>` : '';
+  }
   function swBg(o) {
     if (o.bg) return o.bg;
     if (o.hex !== 'none') return o.hex;
@@ -1291,13 +1439,13 @@
   function chipBtns(k, L, sel) {
     return L.map(
       (o, i) =>
-        `<button type="button" data-k="${k}" data-i="${i}" aria-pressed="${i === sel}" style="background:${swBg(o)}" title="${esc(o.label)} ${o.hex}" aria-label="Preview ${esc(o.label)} ${o.hex}"></button>`,
+        `<button type="button" data-k="${k}" data-i="${i}" aria-pressed="${i === sel}" style="background:${swBg(o)}" title="${esc(o.label)} ${o.hex}" aria-label="Preview ${esc(o.label)} ${o.hex}">${mk(o)}</button>`,
     ).join('');
   }
   function optRows(k, L, sel, ref, vs) {
     return L.map(
       (o, i) =>
-        `<span class="opt${i === sel ? ' on' : ''}" data-k="${k}" data-i="${i}"><i style="background:${swBg(o)}"></i><span class="bl"><span>${o.hex}</span><small>${esc(o.label)}${rt(o.hex, ref, vs)}</small></span><button class="copy" type="button" data-hex="${o.hex}">Copy</button></span>`,
+        `<span class="opt${i === sel ? ' on' : ''}" data-k="${k}" data-i="${i}"><i style="background:${swBg(o)}"${o.mk ? ' class="mki"' : ''}>${mk(o)}</i><span class="bl"><span>${o.hex}</span><small>${esc(o.label)}${rt(o.hex, ref, vs)}</small></span><button class="copy" type="button" data-hex="${o.hex}">Copy</button></span>`,
     ).join('');
   }
   /* accent lists arrive packed as [[name, dark, hex...]]; expand to chip options with step names */
@@ -1312,7 +1460,7 @@
   function applyTheme(sw, i) {
     const th = sw._x.th.opts[i];
     /* background, border and accent lists belong to the theme: swap them (chips and accordion rows), then apply the theme's picks */
-    for (const kk of ['cb', 'cbd', 'ca', 'ct', 'cp', 'cc']) {
+    for (const kk of ['cb', 'cbd', 'ca', 'ct', 'cp', 'cc', 'cf', 'cs', 'csf']) {
       if (!th[kk] || !sw._x[kk]) continue;
       sw._x[kk] = { ...sw._x[kk], opts: th[kk].opts, def: th[kk].def };
       sw._xs[kk] = th[kk].def;
@@ -1321,7 +1469,7 @@
       const row = sw.querySelector(`.opt[data-k="${kk}"]`);
       if (row)
         row.parentNode.innerHTML =
-          kk === 'ca' || kk === 'ct' || kk === 'cp' || kk === 'cc'
+          ['ca', 'ct', 'cp', 'cc', 'cf', 'cs', 'csf'].includes(kk)
             ? optRows(
                 kk,
                 th[kk].opts,
@@ -1342,13 +1490,51 @@
     preview(sw, 'ca', th.ca.def);
     preview(sw, 'ct', th.ct.def);
     if (th.cp && sw._x.cp) preview(sw, 'cp', th.cp.def);
-    preview(sw, 'cc', th.cc.def);
+    preview(sw, 'cc', th.cc.def);   /* brings its Text list */
+    if (th.cs && sw._x.cs) preview(sw, 'cs', th.cs.def);
     if (!sw._x.cp)
       for (const e of [sw, ...sw.querySelectorAll('[style*="--cmut"]')])
         if (e.style.getPropertyValue('--cmut'))
           e.style.setProperty('--cmut', th.mut);
   }
+  /* any color a button list comes from changed: rebuild that side's button lists (source changes reset them to the defaults,
+     a button pick keeps the other button picks when they still apply) */
+  const BSRC = { s: ['t', 'a', 'sb', 'st', 'o'], c: ['th', 'cb', 'ct', 'cp', 'ca'] }, BKEYS = { s: ['pb', 'pbf', 'ps', 'psf'], c: ['cc', 'cf', 'cs', 'csf'] };
   function preview(sw, k, i) {
+    previewCore(sw, k, i);
+    if (sw._sync || !sw._x) return;
+    for (const side of ['s', 'c']) {
+      const K = BKEYS[side];
+      if (sw._x[K[0]] && sw._x[K[1]] && (BSRC[side].includes(k) || K.slice(0, 3).includes(k))) syncButtons(sw, side, k);
+    }
+  }
+  function syncButtons(sw, side, k) {
+    const X = sw._x, cx = (q) => (X[q] ? X[q].opts[sw._xs[q] ?? X[q].def] : null), c = sw.querySelector('.c');
+    let s;
+    if (side === 's') {
+      const T = sw._o.t || [], hl = T.find((o) => o.hex === c.dataset.fg) || { hex: c.dataset.fg, label: 'Headline' }, acc = cx('a');
+      s = { bg: c.dataset.bg || sw.dataset.hex, hl, body: cx('sb'), acc, accFam: X.a ? famOf(X.a.opts, acc) : [], hlFam: T, ctaFam: X.pb.ctaFam || [] };
+    } else {
+      const th = X.th ? X.th.opts[sw._xs.th ?? X.th.def] : {}, bg0 = cx('cb'), acc = cx('ca');
+      s = { bg: bg0 && bg0.hex !== 'none' ? bg0.hex : c.dataset.bg || sw.dataset.hex, hl: cx('ct'), body: cx('cp') || (th.mut && { hex: th.mut, label: 'Body' }), acc,
+            accFam: X.ca ? famOf(X.ca.opts, acc) : [], hlFam: X.ct ? X.ct.opts : [], ctaFam: th.cc0 || (X.cc ? X.cc.opts : []) };
+    }
+    const [kp, kpt, ks, kst] = BKEYS[side], keep = !BSRC[side].includes(k);
+    const B = buildBtns(s, keep ? { p: cx(kp)?.hex, pt: cx(kpt)?.hex, s: cx(ks)?.hex, st: cx(kst)?.hex } : {});
+    const ref = side === 's' ? sw.dataset.hex : s.bg, vs = side === 's' ? 'vs section' : 'vs card';
+    sw._sync = true;
+    for (const [q, L, j] of [[kp, B.P, B.pi], [kpt, B.PT, B.ti], [ks, B.S, B.si], [kst, B.ST, B.sti]]) {
+      if (!X[q] || !L.length) continue;
+      X[q] = { ...X[q], opts: L, def: j };
+      const box = sw.querySelector(`.chips button[data-k="${q}"]`);
+      if (box) box.parentNode.innerHTML = chipBtns(q, L, j);
+      const row = sw.querySelector(`.opt[data-k="${q}"]`);
+      if (row) row.parentNode.innerHTML = optRows(q, L, j, ref, vs);
+      previewCore(sw, q, j);
+    }
+    sw._sync = false;
+  }
+  function previewCore(sw, k, i) {
     if (k === 'th' && sw._x && sw._x.th) applyTheme(sw, i);
     if (k === 'st' && sw._x && sw._x.st) {
       /* a section theme applies its card theme, headline (which brings its accent list), accent, body and border as one set */
@@ -1363,7 +1549,7 @@
         hex = X.opts[i].hex;
       sw.querySelector('.c').style.setProperty(X.var, hex === 'none' ? 'transparent' : hex);
       sw._xs[k] = i;
-      if (k === 'cc')
+      if (k === 'cc' && !sw._x.cf)
         sw.querySelector('.c').style.setProperty(
           '--ctaf',
           X.opts[i].fg || '#FFFFFF',
@@ -1374,7 +1560,7 @@
       const xr = sw.querySelectorAll(`.opt[data-k="${k}"]`);
       xr.forEach((r, j) => r.classList.toggle('on', j === i));
       if (xr[0]) xr[0].closest('.acc').querySelector('.cur').textContent = hex;
-      sel(sw, k, hex, X.opts[i].label);
+      sel(sw, k, hex, X.opts[i].label, X.opts[i]);
       if (k === 'ct' && X.opts[i].accs && sw._x.ca) {
         /* card text brings its own accent list: swap the card Accent chips and rows, select its first */
         const A = unA(X.opts[i].accs),
@@ -1459,15 +1645,44 @@
       const n = +e.target.dataset.n || 12,
         off = +e.target.dataset.off || 24,
         v =
-          Math.max(
+          Math.round(1.25 * Math.max(   /* all swatches 25% bigger than the fit size (11-06) */
             n > 12 ? 14 : 0,
             Math.min(22, Math.floor((e.contentRect.width - off) / n)),
-          ) + 'px';
+          )) + 'px';
       if (e.target.style.getPropertyValue('--chip') !== v)
         e.target.style.setProperty('--chip', v);
     }
   });
   document.querySelectorAll('.sw .stage').forEach((s) => chipRO.observe(s));
+  /* the Theme pill matches the height of the controls beside it and its chips grow to fill it. Wider chips can make the controls
+     beside it wrap taller, so each layout (2 rows, or 3 rows for 5+ themes) settles in a few passes and the more compact one wins.
+     When the controls sit below it (phones), it keeps the two-row default. */
+  const thFit = (th) => {
+    const cr = th.nextElementSibling, box = th.querySelector('.stchips');
+    if (!cr || !cr.classList.contains('crest') || !box) return;
+    const off = () => Math.abs(cr.offsetTop - th.offsetTop) >= 4, clear = () => { th.style.height = ''; th.style.removeProperty('--ths'); th.style.removeProperty('--thr'); };
+    clear();
+    if (off()) return;
+    const n = box.children.length, tries = [];
+    for (const r of n >= 5 ? [2, 3] : [2]) {
+      clear(); th.style.setProperty('--thr', r);
+      let s = 0, ok = true;
+      for (let k = 0; k < 6; k++) {
+        const H = cr.offsetHeight, t = Math.min(48, Math.floor((H - 8 - (r - 1) * 4) / r));
+        th.style.height = H + 'px';
+        if (t === s) break;
+        s = t; th.style.setProperty('--ths', s + 'px');
+        if (off()) { ok = false; break; }
+      }
+      if (ok) tries.push({ r, s, H: cr.offsetHeight });
+    }
+    clear();
+    const b = tries.sort((a, c) => a.H - c.H || c.s - a.s)[0];
+    if (!b) return;
+    th.style.setProperty('--thr', b.r); th.style.setProperty('--ths', b.s + 'px'); th.style.height = cr.offsetHeight + 'px';
+  };
+  const thRO = new ResizeObserver((es) => es.forEach((e) => { const th = e.target.previousElementSibling; if (th && th.classList.contains('cth')) thFit(th); }));
+  document.querySelectorAll('.cgrp.cth + .crest').forEach((c) => thRO.observe(c));
   /* copy: Clipboard API first; inside a sandboxed frame fall back to a hidden textarea so no selection is left behind */
   function copyHex(hex) {
     const legacy = () => {
@@ -1592,7 +1807,7 @@
         band.after(d); d.appendChild(s);
         band.classList.add('bandsum'); band.addEventListener('click', () => { if (!getSelection().toString()) d.open = !d.open; });   /* the whole section summary toggles it too */
         const body = document.createElement('div'); body.className = 'bandbody'; body.appendChild(sw); d.appendChild(body);
-        body.style.borderTop = `1px solid color-mix(in srgb,${band.style.color || 'currentColor'} 22%,transparent)`;   /* hairline above the controls, same as the one above the toggle */
+        body.style.borderTop = `1px solid color-mix(in srgb,${band.style.color || 'currentColor'} 22%,${band.style.background || 'transparent'})`;   /* hairline above the controls: mixed with the band color, not the page under the body, so it matches the line above the toggle */
       }
       if (!row.children.length) row.remove();
     }

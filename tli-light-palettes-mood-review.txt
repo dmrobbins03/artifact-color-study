@@ -5,152 +5,196 @@ Ask of every theme: does this color fit the mood, the palette's brief and the th
 ## 1 · Capitol Mist: Cool blue-gray paper and pale slate section areas, Federal navy ink, logo red buttons. The most direct light inversion of the navy scheme: same hue family, flipped value.
 - section #F4F6FA "Cotton Ball" (very pale neutral grey):
     Granite: #DBDFE5 "Grain of Salt" (pale neutral grey); accent "Dark Eclipse"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Wada red: #60342D "Rampant Rhubarb" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
-    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
     Parchment: #ECE8E0 "Coconut Milk" (pale neutral grey); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
     Civic blue: #DFEEFE "Cloudless" (pale dusty blue); accent "Mermaid Blues"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
-    Paper white: #E5EAF3 "Lullaby of Frost" (pale greyed blue); accent "Aegean Blue"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
+    Wada red: #60342D "Rampant Rhubarb" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
+    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
+    Oxblood: #603335 "Rampant Rhubarb" (dark clear red); accent "Soufflé"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
 - section #E3E9F2 "Radiant Moon" (pale greyed blue):
     Granite: #D2D7DD "Skyscraper" (light neutral grey); accent "Infinite Night"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Wada red: #60342E "Rampant Rhubarb" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
-    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
     Parchment: #E8E5DD "Snowed In" (pale neutral grey); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
     Paper white: #FEFEFE "White" (very pale neutral grey); accent "Aegean Blue"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
-    Civic blue: #C8D7E6 "Snowy Summit" (light dusty blue); accent "Mermaid Blues"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
+    Wada red: #60342E "Rampant Rhubarb" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
+    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
+    Oxblood: #603336 "Rampant Rhubarb" (dark clear red); accent "Hummus"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
 - section #CCD6E5 "Après-Ski" (light greyed blue):
     Parchment: #DDD8CB "Oat Milk" (pale greyed wheat/yellow); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
-    Wada red: #603335 "Rampant Rhubarb" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Pompeian Red (#A62C37) with navy in 2 combinations; sup
-    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
     Paper white: #FEFEFF "White" (very pale neutral grey); accent "Midnight Mirage"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
     Granite: #E3EBF5 "Freeze Up" (pale greyed blue); accent "Blue Funk"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Capitol stone: #E3D5CE "Mocha Ice" (pale greyed terracotta); accent "Infinite Night"; button "Space Cadet" | job: history and institutional content: the section warmed toward limestone with a tr
+    Oxblood: #603338 "Chocolate Truffle" (dark clear pink-red); accent "Soufflé"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
+    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
+    Wada red: #623530 "Rampant Rhubarb" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
 - section #F9EEDC "Long Beach" (very pale dusty wheat/yellow):
     Granite: #E4EDF9 "Cotton Boll" (pale greyed blue); accent "Naval Night"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Flag blue: #294263 "Black Turmeric" (dark clear blue); accent "Droplet"; button "White" | job: civic moments, stats and pledges: the deep blue of the flag, tinted by the secti
-    Bronze: #613726 "Hairy Heath" (deep clear terracotta); accent "Piggy Bank"; button "White" | job: honors, awards and Scorecard results: a dark bronze plaque
     Paper white: #FFFEFD "White" (very pale neutral grey); accent "Pretty Twilight Night"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
     Parchment: #E0D9CA "Albescent" (pale greyed wheat/yellow); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
-    Civic blue: #C7D7E7 "Snowy Summit" (light dusty blue); accent "Poseidon"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
+    Flag blue: #294263 "Black Turmeric" (dark clear blue); accent "Droplet"; button "White" | job: civic moments, stats and pledges: the deep blue of the flag, tinted by the secti
+    Bronze: #613726 "Hairy Heath" (deep clear terracotta); accent "Cereal Flake"; button "White" | job: honors, awards and Scorecard results: a dark bronze plaque
+    Oxblood: #623533 "Rampant Rhubarb" (deep clear red); accent "Cereal Flake"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
 - section #F2E3CA "White Chocolate" (pale dusty wheat/yellow):
     Granite: #D6E2F1 "Cold Shoulder" (pale greyed blue); accent "Naval Night"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Flag blue: #294263 "Black Turmeric" (dark clear blue); accent "Droplet"; button "White" | job: civic moments, stats and pledges: the deep blue of the flag, tinted by the secti
-    Bronze: #5F3624 "Hairy Heath" (dark clear terracotta); accent "Peach Fuzz"; button "White" | job: honors, awards and Scorecard results: a dark bronze plaque
     Paper white: #FFFEFD "White" (very pale neutral grey); accent "Pretty Twilight Night"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
     Parchment: #DFD6C2 "Exclusive Ivory" (light dusty wheat/yellow); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
-    Slate: #EAF1FD "Cotton Boll" (very pale greyed blue); accent "Pretty Twilight Night"; button "Ecstatic Red" | job: data, quotes and reference panels: the section pulled toward the navy ink and gr
+    Flag blue: #294263 "Black Turmeric" (dark clear blue); accent "Droplet"; button "White" | job: civic moments, stats and pledges: the deep blue of the flag, tinted by the secti
+    Bronze: #5F3624 "Hairy Heath" (dark clear terracotta); accent "Cereal Flake"; button "White" | job: honors, awards and Scorecard results: a dark bronze plaque
+    Wada red: #623533 "Rampant Rhubarb" (deep clear red); accent "Droplet"; button "White" | job: library pick: Wada pairs Red Tape (#CC1236) with navy in 3 combinations; support
 - section #E8D3B0 "Celebration Fizz" (light clear wheat/yellow):
     Granite: #CDDAE8 "Blue Silk" (pale greyed blue); accent "Pretty Twilight Night"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Flag blue: #294263 "Black Turmeric" (dark clear blue); accent "Droplet"; button "White" | job: civic moments, stats and pledges: the deep blue of the flag, tinted by the secti
-    Bronze: #5F3723 "Hairy Heath" (deep clear terracotta); accent "Piggy Bank"; button "White" | job: honors, awards and Scorecard results: a dark bronze plaque
     Paper white: #FFFEFD "White" (very pale neutral grey); accent "Pretty Twilight Night"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
     Section tonal: #E6DCCB "Varnished Ivory" (pale dusty wheat/yellow); accent "Black Turmeric"; button "Ecstatic Red" | job: institutional content: the section's own color, one step deeper and greyer
-    Parchment: #FFF7E6 "Cosmic Latte" (very pale greyed wheat/yellow); accent "Azulado"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
+    Flag blue: #294263 "Black Turmeric" (dark clear blue); accent "Droplet"; button "White" | job: civic moments, stats and pledges: the deep blue of the flag, tinted by the secti
+    Bronze: #5F3723 "Hairy Heath" (deep clear terracotta); accent "Cereal Flake"; button "White" | job: honors, awards and Scorecard results: a dark bronze plaque
+    Wada red: #623532 "Rampant Rhubarb" (deep clear red); accent "Droplet"; button "White" | job: library pick: Wada pairs Red Tape (#CC1236) with navy in 3 combinations; support
 
 ## 2 · Limestone: Near-neutral cool stone, like the Capitol's limestone in shade, with a pale blue-gray third section for contrast. Navy ink and accents carry all the color. Section 1 leans just cool enough (#F3F6F8) and Section 2 a touch
 - section #F3F6F8 "Chef’s Hat" (very pale neutral grey):
     Granite: #DCE1E7 "Snow Blanket" (pale neutral grey); accent "Dark Eclipse"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Wada red: #60342C "Hairy Heath" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
-    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
     Parchment: #E8E5DD "Snowed In" (pale neutral grey); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
     Civic blue: #E1EFFE "Cotton Boll" (pale dusty blue); accent "Mermaid Blues"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
-    Paper white: #D0D5DD "Steam Bath" (light greyed blue); accent "Midnight Mirage"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
+    Wada red: #60342C "Hairy Heath" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
+    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
+    Oxblood: #603335 "Rampant Rhubarb" (dark clear red); accent "Soufflé"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
 - section #E5E6E2 "Apollo Landing" (pale neutral grey):
     Granite: #D1D5DB "Grain of Salt" (light neutral grey); accent "Dark Eclipse"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Wada red: #60352C "Hairy Heath" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
-    Seal blue: #264464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
     Parchment: #D3D0C8 "Silken Pebble" (light neutral grey); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
     Paper white: #FEFEFE "White" (very pale neutral grey); accent "Midnight Mirage"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
-    Civic blue: #D5E4F3 "Cold Shoulder" (pale dusty blue); accent "Naval Night"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
+    Wada red: #60352C "Hairy Heath" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
+    Seal blue: #264464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
+    Oxblood: #623535 "Rampant Rhubarb" (deep clear red); accent "Cereal Flake"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
 - section #DDE3EB "Radiant Moon" (pale greyed blue):
     Parchment: #E0DDD5 "Closet Skeletons" (pale neutral grey); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
-    Chamber navy: #2E4265 "Black Turmeric" (dark clear blue); accent "Kendall Rose"; button "White" | job: press, quotes and testimony: deep chamber navy with a logo-red accent
-    Wada red: #60342D "Rampant Rhubarb" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
     Paper white: #FEFEFE "White" (very pale neutral grey); accent "Midnight Mirage"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
     Granite: #CACFD5 "Steam Bath" (light neutral grey); accent "Midnight Mirage"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Civic blue: #C3D2E1 "Winter Scene" (light dusty blue); accent "Naval Night"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
+    Chamber navy: #2E4265 "Black Turmeric" (dark clear blue); accent "Cereal Flake"; button "White" | job: press, quotes and testimony: deep chamber navy with a logo-red accent
+    Wada red: #60342D "Rampant Rhubarb" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
+    Oxblood: #603336 "Rampant Rhubarb" (dark clear red); accent "Hummus"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
 - section #F9EAE0 "Grandma’s Cameo" (pale greyed terracotta):
     Granite: #E0E6EF "Radiant Moon" (pale greyed blue); accent "Fly-by-Night"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Deep blue: #284263 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: program highlights and stats: logo blue deepened with navy, tinted by the sectio
-    Wada red: #623534 "Rampant Rhubarb" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Red Tape (#CC1236) with navy in 3 combinations; support
     Paper white: #FFFEFD "White" (very pale neutral grey); accent "Subnautical"; button "Pāua" | job: forms, program details, long reading: near-white with a trace of the section col
     Capitol stone: #DFD5CB "Mocha Ice" (light greyed clay/sand); accent "Infinite Night"; button "Pāua" | job: history and institutional content: the section warmed toward limestone with a tr
-    Civic blue: #DBEAFB "Cloudless" (pale dusty blue); accent "Tardis Blue"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
+    Deep blue: #284263 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: program highlights and stats: logo blue deepened with navy, tinted by the sectio
+    Oxblood: #623534 "Rampant Rhubarb" (deep clear red); accent "Cereal Flake"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
+    Chamber navy: #0E1C38 "Nightwalker" (dark clear blue); accent "Cereal Flake"; button "White" | job: press, quotes and testimony: deep chamber navy with a logo-red accent
 - section #F0DFD3 "Delicate Bliss" (pale greyed terracotta):
     Granite: #D5DCE7 "Nordic Breeze" (pale greyed blue); accent "Fly-by-Night"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Deep blue: #284263 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: program highlights and stats: logo blue deepened with navy, tinted by the sectio
-    Wada red: #623534 "Rampant Rhubarb" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Red Tape (#CC1236) with navy in 3 combinations; support
     Paper white: #FEFEFE "White" (very pale neutral grey); accent "Subnautical"; button "Pāua" | job: forms, program details, long reading: near-white with a trace of the section col
     Section tonal: #D8CCC4 "Mushroom Risotto" (light greyed terracotta); accent "Infinite Night"; button "Pāua" | job: institutional content: the section's own color, one step deeper and greyer
-    Civic blue: #E5F1FE "Cotton Boll" (very pale greyed blue); accent "Neptune’s Dream"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
+    Deep blue: #284263 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: program highlights and stats: logo blue deepened with navy, tinted by the sectio
+    Oxblood: #623534 "Rampant Rhubarb" (deep clear red); accent "Cereal Flake"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
+    Chamber navy: #0E1C38 "Nightwalker" (dark clear blue); accent "Cereal Flake"; button "White" | job: press, quotes and testimony: deep chamber navy with a logo-red accent
 - section #E5CBB9 "Tapioca" (light dusty terracotta):
     Granite: #CAD2E2 "Après-Ski" (light greyed blue); accent "Fly-by-Night"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Flag blue: #294062 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: civic moments, stats and pledges: the deep blue of the flag, tinted by the secti
-    Wada red: #623533 "Rampant Rhubarb" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Pompeian Red (#A62C37) with navy in 2 combinations; sup
     Paper white: #FEFEFE "White" (very pale neutral grey); accent "Subnautical"; button "Pāua" | job: forms, program details, long reading: near-white with a trace of the section col
     Section tonal: #EFDED3 "Delicate Bliss" (pale greyed terracotta); accent "Nightwalker"; button "Pāua" | job: institutional content: the section's own color, one step deeper and greyer
-    Slate: #EBEFFB "Cotton Boll" (very pale greyed blue); accent "Subnautical"; button "Ecstatic Red" | job: data, quotes and reference panels: the section pulled toward the navy ink and gr
+    Flag blue: #294062 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: civic moments, stats and pledges: the deep blue of the flag, tinted by the secti
+    Oxblood: #623533 "Rampant Rhubarb" (deep clear red); accent "Cereal Flake"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
+    Chamber navy: #101C37 "Nightwalker" (dark clear blue); accent "Cereal Flake"; button "White" | job: press, quotes and testimony: deep chamber navy with a logo-red accent
 
 ## 3 · Limestone Flag: Limestone's cool stone sections on a neutral off-white base, one clay tint for warmth, and three cool steps that walk down to a deep flag blue (#0A3161) for the closing call to action. The steps skip the middle grays, wh
 - section #FDFDFD "Brilliance" (very pale neutral grey):
     Parchment: #EDEAE2 "Coconut Milk" (pale neutral grey); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
-    Chamber navy: #2F4263 "Black Turmeric" (dark clear blue); accent "Millennial Pink"; button "White" | job: press, quotes and testimony: deep chamber navy with a logo-red accent
-    Wada red: #60352C "Hairy Heath" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
     Granite: #E4E9EF "White Frost" (pale neutral grey); accent "Midnight Mirage"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
     Civic blue: #E7F2FF "Cotton Boll" (very pale greyed blue); accent "Naval Night"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
-    Harbor blue: #C5CED7 "Memory Lane" (light greyed blue); accent "Naval Night"; button "Ecstatic Red" | job: news, updates and events: a clear light blue between the section and the logo bl
+    Chamber navy: #2F4263 "Black Turmeric" (dark clear blue); accent "Cereal Flake"; button "White" | job: press, quotes and testimony: deep chamber navy with a logo-red accent
+    Wada red: #60352C "Hairy Heath" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
+    Oxblood: #623536 "Rampant Rhubarb" (deep clear red); accent "Cereal Flake"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
 - section #F3F6F8 "Chef’s Hat" (very pale neutral grey):
     Granite: #DCE1E7 "Snow Blanket" (pale neutral grey); accent "Dark Eclipse"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Wada red: #60342C "Hairy Heath" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
-    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
     Parchment: #E8E5DD "Snowed In" (pale neutral grey); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
     Civic blue: #E1EFFE "Cotton Boll" (pale dusty blue); accent "Naval Night"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
-    Paper white: #C8CDD5 "Steam Bath" (light greyed blue); accent "Midnight Mirage"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
+    Wada red: #60342C "Hairy Heath" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
+    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
+    Oxblood: #603335 "Rampant Rhubarb" (dark clear red); accent "Soufflé"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
 - section #E5E6E2 "Apollo Landing" (pale neutral grey):
     Granite: #D1D5DB "Grain of Salt" (light neutral grey); accent "Dark Eclipse"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Wada red: #60352C "Hairy Heath" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
-    Seal blue: #264464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
     Parchment: #D3D0C8 "Silken Pebble" (light neutral grey); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
     Paper white: #FEFEFE "White" (very pale neutral grey); accent "Midnight Mirage"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
-    Civic blue: #D5E4F3 "Cold Shoulder" (pale dusty blue); accent "Naval Night"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
+    Wada red: #60352C "Hairy Heath" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
+    Seal blue: #264464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
+    Oxblood: #623535 "Rampant Rhubarb" (deep clear red); accent "Cereal Flake"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
 - section #DDE3EB "Radiant Moon" (pale greyed blue):
     Parchment: #E0DDD5 "Closet Skeletons" (pale neutral grey); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
-    Chamber navy: #2E4265 "Black Turmeric" (dark clear blue); accent "Kendall Rose"; button "White" | job: press, quotes and testimony: deep chamber navy with a logo-red accent
-    Wada red: #60342D "Rampant Rhubarb" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
     Paper white: #FEFEFE "White" (very pale neutral grey); accent "Midnight Mirage"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
     Granite: #C9CDD3 "Herring Silver" (light neutral grey); accent "Midnight Mirage"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Civic blue: #C3D2E1 "Winter Scene" (light dusty blue); accent "Naval Night"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
+    Chamber navy: #2E4265 "Black Turmeric" (dark clear blue); accent "Cereal Flake"; button "White" | job: press, quotes and testimony: deep chamber navy with a logo-red accent
+    Wada red: #60342D "Rampant Rhubarb" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
+    Oxblood: #603336 "Rampant Rhubarb" (dark clear red); accent "Hummus"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
 - section #F9EAE0 "Grandma’s Cameo" (pale greyed terracotta):
     Granite: #E0E6EF "Radiant Moon" (pale greyed blue); accent "Fly-by-Night"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Deep blue: #284263 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: program highlights and stats: logo blue deepened with navy, tinted by the sectio
-    Wada red: #623534 "Rampant Rhubarb" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Red Tape (#CC1236) with navy in 3 combinations; support
     Paper white: #FFFEFD "White" (very pale neutral grey); accent "Subnautical"; button "Pāua" | job: forms, program details, long reading: near-white with a trace of the section col
     Capitol stone: #DFD5CB "Mocha Ice" (light greyed clay/sand); accent "Infinite Night"; button "Pāua" | job: history and institutional content: the section warmed toward limestone with a tr
-    Civic blue: #DBEAFB "Cloudless" (pale dusty blue); accent "Neptune’s Dream"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
+    Deep blue: #284263 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: program highlights and stats: logo blue deepened with navy, tinted by the sectio
+    Oxblood: #623534 "Rampant Rhubarb" (deep clear red); accent "Cereal Flake"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
+    Chamber navy: #0E1C38 "Nightwalker" (dark clear blue); accent "Cereal Flake"; button "White" | job: press, quotes and testimony: deep chamber navy with a logo-red accent
 - section #CBD7E8 "Après-Ski" (light dusty blue):
     Granite: #C0C9D4 "Steel Mist" (light greyed blue); accent "Midnight Mirage"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Wada red: #623530 "Rampant Rhubarb" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
-    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
     Paper white: #FEFEFE "White" (very pale neutral grey); accent "Midnight Mirage"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
     Parchment: #D6CFC1 "Lunar Landing" (light greyed wheat/yellow); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
-    Capitol stone: #DDCCC5 "Lip Gloss" (light greyed terracotta); accent "Infinite Night"; button "Space Cadet" | job: history and institutional content: the section warmed toward limestone with a tr
+    Wada red: #623530 "Rampant Rhubarb" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
+    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
+    Oxblood: #603338 "Chocolate Truffle" (dark clear pink-red); accent "Hummus"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
 - section #BBC9DB "Plein Air" (light dusty blue):
     Parchment: #D0C9B9 "Chrome White" (light greyed wheat/yellow); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
-    Oxblood: #603442 "Wine Stain" (deep clear pink-red); accent "Love Fumes"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
-    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
     Paper white: #FEFEFE "White" (very pale neutral grey); accent "Midnight Mirage"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
     Granite: #D4DEEB "Ice Desert" (pale greyed blue); accent "Midnight Mirage"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Capitol stone: #D6C4BC "Coconut Macaroon" (light greyed terracotta); accent "Infinite Night"; button "Space Cadet" | job: history and institutional content: the section warmed toward limestone with a tr
+    Wada red: #603335 "Rampant Rhubarb" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Red Tape (#CC1236) with navy in 3 combinations; support
+    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
+    Chamber navy: #0A1C3B "Naval Night" (dark clear blue); accent "Cereal Flake"; button "White" | job: press, quotes and testimony: deep chamber navy with a logo-red accent
 - section #344358 "Pi" (dark dusty blue):
+    Chamber navy: #1F3254 "Midnight Escapade" (dark clear blue); accent "Cereal Flake"; button "White" | job: press, quotes and testimony: deep chamber navy with a logo-red accent
+    Tonal deep: #1F2D41 "Midnight Express" (dark dusty blue); accent "Night Snow"; button "White" | job: quotes and supporting panels: the section's own color, a step deeper
+    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
     Granite: #E2EDFD "Cotton Boll" (pale greyed blue); accent "Dark Eclipse"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
-    Wada red: #623531 "Rampant Rhubarb" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
     Parchment: #F4EBD7 "White Sand" (pale dusty wheat/yellow); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
     Paper white: #FEFEFE "White" (very pale neutral grey); accent "Midnight Mirage"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
-    Capitol stone: #FEE6DF "Slightly in Love" (pale dusty red); accent "Infinite Night"; button "Space Cadet" | job: history and institutional content: the section warmed toward limestone with a tr
-    Slate: #C6CDD9 "Steel Mist" (light greyed blue); accent "Midnight Mirage"; button "Ecstatic Red" | job: data, quotes and reference panels: the section pulled toward the navy ink and gr
 - section #0A3161 "Marine" (dark clear blue):
+    Seal blue: #1D3959 "Nautilus" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
+    Tonal deep: #132A4A "Midnight Ocean" (dark clear blue); accent "Broad Daylight"; button "White" | job: quotes and supporting panels: the section's own color, a step deeper
+    Chamber navy: #091C3B "Naval Night" (dark clear blue); accent "Cereal Flake"; button "White" | job: press, quotes and testimony: deep chamber navy with a logo-red accent
     Parchment: #F2ECD7 "Eggshell" (pale dusty wheat/yellow); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
-    Oxblood: #562B28 "Worcestershire Sauce" (dark clear red); accent "In the Pink"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
     Granite: #E2EDFD "Cotton Boll" (pale greyed blue); accent "Midnight Mirage"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
     Paper white: #FEFEFE "White" (very pale neutral grey); accent "Midnight Mirage"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
-    Slate: #C6CDD9 "Steel Mist" (light greyed blue); accent "Midnight Mirage"; button "Ecstatic Red" | job: data, quotes and reference panels: the section pulled toward the navy ink and gr
-    Civic blue: #CAD8E9 "Snowy Summit" (light dusty blue); accent "Naval Night"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
+
+## 4 · Capitol Brick: Capitol Mist with red added the way public buildings carry it: brick, not blush.
+- section #F4F6FA "Cotton Ball" (very pale neutral grey):
+    Granite: #DBDFE5 "Grain of Salt" (pale neutral grey); accent "Dark Eclipse"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
+    Parchment: #ECE8E0 "Coconut Milk" (pale neutral grey); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
+    Civic blue: #DFEEFE "Cloudless" (pale dusty blue); accent "Mermaid Blues"; button "Ecstatic Red" | job: program pages: the section color pulled toward the logo blue
+    Wada red: #60342D "Rampant Rhubarb" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
+    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
+    Oxblood: #603335 "Rampant Rhubarb" (dark clear red); accent "Soufflé"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
+- section #E3E9F2 "Radiant Moon" (pale greyed blue):
+    Granite: #CFD4DA "Zen" (light neutral grey); accent "Infinite Night"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
+    Parchment: #E8E5DD "Snowed In" (pale neutral grey); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
+    Paper white: #FEFEFE "White" (very pale neutral grey); accent "Midnight Mirage"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
+    Wada red: #60342E "Rampant Rhubarb" (dark clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
+    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
+    Oxblood: #603336 "Rampant Rhubarb" (dark clear red); accent "Hummus"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
+- section #CCD6E5 "Après-Ski" (light greyed blue):
+    Parchment: #DDD8CB "Oat Milk" (pale greyed wheat/yellow); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
+    Paper white: #FEFEFF "White" (very pale neutral grey); accent "Midnight Mirage"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
+    Granite: #E3EBF5 "Freeze Up" (pale greyed blue); accent "Aegean Blue"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
+    Oxblood: #603338 "Chocolate Truffle" (dark clear pink-red); accent "Soufflé"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
+    Seal blue: #274464 "Black Turmeric" (dark clear blue); accent "Broad Daylight"; button "White" | job: official statements and endorsements: the logo blue deepened like an official se
+    Wada red: #623530 "Rampant Rhubarb" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
+- section #F9EEDC "Long Beach" (very pale dusty wheat/yellow):
+    Granite: #E4EDF9 "Cotton Boll" (pale greyed blue); accent "Naval Night"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
+    Paper white: #FFFEFD "White" (very pale neutral grey); accent "Pretty Twilight Night"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
+    Parchment: #E0D9CA "Albescent" (pale greyed wheat/yellow); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
+    Flag blue: #294263 "Black Turmeric" (dark clear blue); accent "Droplet"; button "White" | job: civic moments, stats and pledges: the deep blue of the flag, tinted by the secti
+    Bronze: #613726 "Hairy Heath" (deep clear terracotta); accent "Cereal Flake"; button "White" | job: honors, awards and Scorecard results: a dark bronze plaque
+    Oxblood: #623533 "Rampant Rhubarb" (deep clear red); accent "Cereal Flake"; button "White" | job: urgent calls to action and deadlines: logo red deepened with navy, tinted by the
+- section #E5D1B8 "Almond Brittle" (light dusty clay/sand):
+    Granite: #CBD6E5 "Après-Ski" (light greyed blue); accent "Fly-by-Night"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
+    Paper white: #FFFEFD "White" (very pale neutral grey); accent "Subnautical"; button "Ecstatic Red" | job: forms, program details, long reading: near-white with a trace of the section col
+    Parchment: #EEE4D1 "Ancient Scroll" (pale dusty wheat/yellow); accent "Infinite Night"; button "Ecstatic Red" | job: history, founding documents and the Accord text: warm charter paper
+    Flag blue: #284162 "Black Turmeric" (dark clear blue); accent "Droplet"; button "White" | job: civic moments, stats and pledges: the deep blue of the flag, tinted by the secti
+    Wada red: #61362B "Hairy Heath" (deep clear red); accent "Droplet"; button "White" | job: library pick: Wada pairs Dockside Red (#793327) with navy in 3 combinations; sup
+    Chamber navy: #0F1C36 "Dark Knight" (dark clear blue); accent "Cereal Flake"; button "White" | job: press, quotes and testimony: deep chamber navy with a logo-red accent
+- section #682321 "Bloodlust" (dark clear red):
+    Wada red: #623534 "Rampant Rhubarb" (deep clear red); accent "Broad Daylight"; button "White" | job: library pick: Wada pairs Red Tape (#CC1236) with navy in 3 combinations; support
+    Tonal deep: #552926 "Worcestershire Sauce" (dark clear red); accent "Cereal Flake"; button "White" | job: quotes and supporting panels: the section's own color, a step deeper
+    Tonal step: #370F0D "3AM Breakup" (dark clear red); accent "Cereal Flake"; button "White" | job: institutional content on a dark band: the section's own color, a step lighter
+    Parchment: #F9E9D8 "Dwindling Dandelion" (pale dusty clay/sand); accent "Infinite Night"; button "Pāua" | job: history, founding documents and the Accord text: warm charter paper
+    Granite: #E3ECFD "Cotton Boll" (pale greyed blue); accent "Fly-by-Night"; button "Ecstatic Red" | job: data, research and reference panels: cool blue-grey stone
+    Slate: #FBFCFF "Heart of Ice" (very pale neutral grey); accent "Subnautical"; button "Ecstatic Red" | job: data, quotes and reference panels: the section pulled toward the navy ink and gr

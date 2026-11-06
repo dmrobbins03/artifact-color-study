@@ -118,7 +118,7 @@ const ok = (cond, msg) => {
       ...new Set(
         [...s.querySelectorAll('.chips button')].map((b) => b.dataset.k),
       ),
-    ].filter((k) => !'bot'.includes(k)),
+    ].filter((k) => !'bot'.includes(k) && s.querySelectorAll(`.chips button[data-k="${k}"]`).length > 1),   /* a list with one option has nothing to switch to */
   );
   for (const k of xk) {
     const before = await sw.evaluate(

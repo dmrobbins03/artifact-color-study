@@ -149,7 +149,7 @@ DEFAULT_THEMES = [   # a pool of card themes by purpose; each section picks six 
   {"label": "Deep tone", "note": "section breaks and calls to apply: the section color taken dark with a touch of logo purple",
    "tone": "dark", "bg": ["section", "Logo purple", .3], "c": 1.3, "acc": ["section", "Logo red", .5]},
   {"label": "Oxblood", "note": "urgent calls to action and deadlines: logo red deepened with navy, tinted by the section",
-   "tone": "dark", "bg": ["Logo red", "ink", .5], "s": .25, "acc": ["Logo red", "section", .4]},
+   "tone": "dark", "bg": ["Logo red", "ink", .5], "s": .25, "shift": 12, "acc": ["Logo red", "section", .4]},   # shift: toward brick, away from wine-pink
   {"label": "Deep plum", "note": "fellow spotlights and testimonials: logo purple deepened with navy, tinted by the section",
    "tone": "dark", "bg": ["Logo purple", "ink", .4], "s": .25, "acc": ["Logo purple", "section", .4]},
   {"label": "Deep blue", "cool": True, "note": "program highlights and stats: logo blue deepened with navy, tinted by the section",
@@ -168,11 +168,14 @@ def darken_to(c, bgs, minr=AAA, up=False):
         if min(ratio(h, b) for b in bgs) >= minr: return h
         L += .005 if up else -.005
     return '#FFFFFF' if up else '#000000'
+def reddish(H): return H < 50 or H > 340   # OKLCH hues where a pale tint reads pink (logo red sits at 25°)
+BRASS = 80   # light accents on dark grounds use brass (OKLCH hue 80) in place of red, so dark cards never carry pink
 def accent_set(bases, bgs, avoid, dark=False, hues=3, per=3, gap=.09, sec=None):
     """accent options: up to `hues` clearly different colors (paired one first), each in `per` brightness steps `gap` OKLCH L apart,
     every value 7:1 on all of `bgs` and at least ΔE 10 from the text (`avoid`). bases: [(name, C, H)]."""
     out, firsts = [], []
     for nm, C, H in bases:
+        if dark and reddish(H): nm, H = "Brass", BRASS   # a pale red on a dark ground reads pink
         C = .07 if dark else max(C, .06); v = []
         for i in range(0, 140):
             off = (.97 - oklch(sec)[0]) if sec else 0   # start follows the section's lightness, so same-hue sections get their own accents
@@ -194,8 +197,9 @@ def sec_text(sec, P):
     iL, iC, iH = oklch(P['ink']); sH = oklch(sec)[2] if oklch(sec)[1] >= .008 else iH
     if is_dark(sec):   # a dark band in a light study: light text options
         bL, bC, bH = oklch(BRAND[0][1]); rL, rC, rH = oklch(P['red'])
+        if reddish(sH): sH = BRASS   # a pale tint of a red band reads pink: warm the pale and muted lights to stone instead
         opts = [("#FFFFFF", "White"), (darken_to(from_oklch(.95, .02, sH), [sec], up=True), "Pale section tint"), (darken_to(from_oklch(.80, .03, sH), [sec], up=True), "Muted light"),
-                (darken_to(from_oklch(.80, .08, bH), [sec], up=True), "Light accent"), (darken_to(from_oklch(.80, .09, rH), [sec], up=True), "Light red accent"),
+                (darken_to(from_oklch(.80, .08, bH), [sec], up=True), "Light accent"), (darken_to(from_oklch(.80, .07, BRASS), [sec], up=True), "Light brass accent"),
                 (darken_to(from_oklch(.86, .035, 80), [sec], up=True), "Pale stone")]   # a warm limestone/parchment counterpoint, so dark bands aren't all pale blue
         out = {}
         for h, l in opts: out[h] = out[h] + " = " + l if h in out else l
@@ -285,7 +289,14 @@ def card_themes(sec, P, TX):
     # take the first pick and get a preference in the most-distinct picks
     BN = {n for n, *_ in BRAND} | {"section", "ink", "accent", "red"}
     def known(R): return all(not isinstance(x, str) or x.startswith('#') or x in BN for x in R['bg'][:2] + R['acc'][:2])
-    for R in [R for R in S.get('card_themes', DEFAULT_THEMES) + [{**m, "mood": True} for m in MOOD.get('themes', [])] + library_themes(P) if known(R)]:   # skip recipes naming a brand color the settings no longer list
+    # dark bands get tonal dark cards (the section's own color a step lighter, nudged toward ink or stone) for the subtle half
+    TONAL = [{"label": "Tonal step", "note": "institutional content on a dark band: the section's own color, a step lighter", "tone": "dark", "tonal": True,
+              "bg": ["section", "section", 0], "acc": ["accent", "section", .2]},
+             {"label": "Tonal deep", "note": "quotes and supporting panels: the section's own color, a step deeper", "tone": "dark", "tonal": True, "lift": "down",
+              "bg": ["section", "section", 0], "acc": ["accent", "section", .2]},
+             {"label": "Tonal stone", "note": "forms and details on a dark band: the section greyed toward limestone, a step lighter", "tone": "dark", "tonal": True,
+              "bg": ["section", "#D9CCB0", .12], "c": .4, "acc": ["accent", "accent", 0]}] if is_dark(sec) else []
+    for R in [R for R in S.get('card_themes', DEFAULT_THEMES) + [{**m, "mood": True} for m in MOOD.get('themes', [])] + library_themes(P) + TONAL if known(R)]:   # skip recipes naming a brand color the settings no longer list
         tone = R.get('tone', 'panel'); mL, mC, mH = mix(ref(R['bg'][0], sec, P), ref(R['bg'][1], sec, P), R['bg'][2])
         if R.get('s'): mL, mC, mH = mix(from_oklch(mL, mC, mH), sec, R['s'])
         if mC < .008: mH = oklch(P['ink'])[2]   # near-grey blend: lean on the ink hue rather than an unstable one
@@ -303,8 +314,8 @@ def card_themes(sec, P, TX):
                 L = .15 + .005*i; c = from_oklch(L, Cq, H)
                 if ratio('#FFFFFF', c) >= AAA and ratio(mut, c) >= AAA: ok.append((L, c))
             j = min(range(len(ok)), key=lambda m: abs(ok[m][0] - mL))
-            if is_dark(sec):   # dark card on a dark band: lift it a step above the section (ΔE 6–14), like a light panel sits a step below a light one
-                up_ = [m for m in range(len(ok)) if ok[m][0] >= secL + .02]
+            if is_dark(sec):   # dark card on a dark band: a step above the section (ΔE 6–14), or below it for recipes with lift "down"
+                up_ = [m for m in range(len(ok)) if (ok[m][0] <= secL - .02 if R.get('lift') == 'down' else ok[m][0] >= secL + .02)]
                 if up_: j = min(up_, key=lambda m: (0 if 6 <= dE(ok[m][1], sec) <= 14 else 1, abs(dE(ok[m][1], sec) - 10)))
         else:
             Cq = C*(R.get('c', 1) if mC >= .02 else min(R.get('c', 1), 1)); ok = []   # no chroma boost when the blend left almost no color
@@ -337,23 +348,36 @@ def card_themes(sec, P, TX):
     for t in bad: PAIRLOG.append((sec, f"{t[0]} theme"))
     good = [t for t in out if t not in bad]
     light = [t for t in good if t[4].get('tone') != 'dark']; dark = [t for t in good if t[4].get('tone') == 'dark']
-    if len(light) < 1 or len(dark) < 2: light = [t for t in out if t[4].get('tone') != 'dark']; dark = [t for t in out if t[4].get('tone') == 'dark']
-    nd = max(2, -(-S.get('card_theme_count', 6)//3)); nl = S.get('card_theme_count', 6) - nd
-    if is_dark(sec):   # on a dark band the light cards are the opposite lightness: one dark card, never in the section's own hue (navy on navy reads as a mistake)
-        nd = 1; nl = S.get('card_theme_count', 6) - 1
-        dark = [t for t in dark if hdist(oklch(t[2][t[3]])[2], oklch(sec)[2]) > 30] or dark
+    # fallback when too few themes survive: relax the pairing check, but never bring back a theme the mood review dropped;
+    # a dark section needs only one dark card (see the pick below), so it doesn't trigger the fallback by itself
+    mood_out = [t for t in out if any(r['theme'] == t[0] and r.get('section', '*') in ('*', sec) for r in MOOD_RULES)]
+    if len(light) < 1 or len(dark) < (1 if is_dark(sec) else 2):
+        light = [t for t in out if t[4].get('tone') != 'dark' and t not in mood_out]; dark = [t for t in out if t[4].get('tone') == 'dark' and t not in mood_out]
+    # half subtle, half bold: subtle cards share the section's lightness (a panel a step off it), bold ones take the opposite lightness.
+    # On a light section that's light panels + dark cards; on a dark band, dark cards lifted a step above it + light cards.
+    N = S.get('card_theme_count', 6); nsub = N // 2
+    if is_dark(sec):
+        nd, nl = nsub, N - nsub
+        # subtle means low contrast with the band: dark cards within ΔE 18 of it (in practice the tonal ones); a navy card on brick is ΔE ~50
+        close = [t for t in dark if dE(t[2][t[3]], sec) <= 18]
+        dark = close if len(close) >= nd else sorted(dark, key=lambda t: dE(t[2][t[3]], sec))[:max(nd, len(close))]
+    else:
+        nl, nd = nsub, N - nsub
+    if len(dark) < nd: nd = len(dark); nl = N - nd
+    if len(light) < nl: nl = len(light); nd = min(len(dark), N - nl)
     ml = [t for t in light if t[4].get('mood')] or light
     pick = [ml[int(sec[1:], 16) % len(ml)]]
     sL_, sC_, sH_ = oklch(sec); warm = sC_ >= .01 and 20 <= sH_ <= 120   # warm sections get at least two cool themes
     def room(t): return (sum(1 for p in pick if (p[4].get('tone') == 'dark') == (t[4].get('tone') == 'dark')) < (nd if t[4].get('tone') == 'dark' else nl))
     while warm and sum(1 for p in pick if p[4].get('cool')) < 2:
-        cool = [t for t in out if t[4].get('cool') and t not in pick and room(t)]
+        cool = [t for t in light + dark if t[4].get('cool') and t not in pick and room(t) and t not in bad]   # the cool quota draws only from the subtle/bold pools and never brings back a dropped theme
         if not cool: break
         pick.append(max(cool, key=lambda t: min(dE(t[2][t[3]], q) for q in [sec] + [p[2][p[3]] for p in pick])))
     while len(pick) < nl + nd:
-        pool = [t for t in (light if sum(1 for p in pick if p[4].get('tone') != 'dark') < nl else []) + (dark if sum(1 for p in pick if p[4].get('tone') == 'dark') < nd else []) if t not in pick]
+        pool = [t for t in (light if sum(1 for p in pick if p[4].get('tone') != 'dark') < nl else []) + (dark if sum(1 for p in pick if p[4].get('tone') == 'dark') < nd else []) if t not in pick and t[0] not in {p[0] for p in pick}]   # one theme per name (library themes can repeat a name)
         pick.append(max(pool, key=lambda t: min(dE(t[2][t[3]], q) for q in [sec] + [p[2][p[3]] for p in pick]) + (1.5 if t[4].get('mood') else 0)))
-    out = pick
+    sub = lambda t: (t[4].get('tone') == 'dark') == is_dark(sec)
+    out = [t for t in pick if sub(t)] + [t for t in pick if not sub(t)]   # subtle first, then bold
     for i, t in enumerate(out):   # a default within ΔE 4 of an earlier pick moves to its own most distinct background value
         prev = [q[2][q[3]] for q in out[:i]] + [sec]
         if i and min(dE(t[2][t[3]], q) for q in prev) < 4:
@@ -381,6 +405,7 @@ def extras(sec, P, cards, TX):
         # accent = the recipe's brand blend, six values that each keep 7:1 on every background of this theme
         dark = R.get('tone') == 'dark'; aL, aC, aH = mix(ref(R['acc'][0], sec, P), ref(R['acc'][1], sec, P), R['acc'][2]); acc = []
         aH = nudge(aH, sec, .3, 8)   # small turn toward the section; larger turns drifted blues to teal and reds to brown
+        if dark and reddish(aH): aH, aC = BRASS, .06   # dark cards: brass instead of a pale red (pink)
         sl = oklch(sec)[0]
         def acc_list(aC, aH):   # six values of one accent hue that keep 7:1 on every background of this theme; start follows the section's lightness
             out = []
@@ -392,7 +417,10 @@ def extras(sec, P, cards, TX):
         an = label + " accent"; steps_lbl = ["most vivid", "step 2", "step 3", "step 4", "step 5", "palest"] if dark else ["brightest", "step 2", "step 3", "step 4", "step 5", "deepest"]
         if dark:
             sH = oklch(sec)[2] if oklch(sec)[1] >= .008 else H
-            mut = darken_to(from_oklch(.80 + (oklch(sec)[0] - .9)*.5, .03, nudge(H, sec, .5, 40)), steps, up=True); tl = [("#FFFFFF", "White"), (darken_to(sec, steps, up=True), "Section color"), (mut, "Muted light")]
+            mH = nudge(H, sec, .5, 40); mH = BRASS if reddish(mH) else mH   # pale reds read pink: stone instead
+            mut = darken_to(from_oklch(.80 + (oklch(sec)[0] - .9)*.5, .03, mH), steps, up=True)
+            sc = darken_to(sec, steps, up=True); sc = darken_to(from_oklch(.9, .025, BRASS), steps, up=True) if reddish(oklch(sec)[2]) and oklch(sec)[1] >= .03 else sc
+            tl = [("#FFFFFF", "White"), (sc, "Section color" if sc == darken_to(sec, steps, up=True) else "Pale stone"), (mut, "Muted light")]
             tx = {"opts": [{"hex": h, "label": l} for h, l in tl if min(ratio(h, b) for b in steps) >= AAA], "def": 0}
         else:
             th_ = nudge(H, sec, 0, 0); iL_, iC_, iH_ = oklch(P['ink'])
@@ -401,9 +429,11 @@ def extras(sec, P, cards, TX):
                   (mut, "Muted, card hue"), (darken_to(from_oklch(.2, .02, oklch(sec)[2]), steps), "Near black, section hue")]
             tx = {"opts": o(tl), "def": 0}
         # each card text brings its own accent list: text 0 the theme accent, the others the first unused brand accent clearly apart from it
-        cands = [(an, acc)] + [(nm + " accent", acc_list(oklch(h)[1], nudge(oklch(h)[2], sec))) for nm, h in
-                               [(n, bc) for n, bc, *_ in LOGOS] + [("Palette", P['accent'])]]
-        cb = [(an, aC, aH)] + [(nm + " accent", oklch(h)[1], nudge(oklch(h)[2], sec, .3, 6)) for nm, h in [(n, bc) for n, bc, *_ in LOGOS] + [("Palette", P['accent'])]]
+        BL = [(n, bc) for n, bc, *_ in LOGOS] + [("Palette", P['accent'])]
+        if dark: BL = list({(("Brass", from_oklch(.8, .06, BRASS)) if reddish(oklch(h)[2]) else (n, h)) for n, h in BL})   # dark cards: brass in place of red
+        BL.sort(key=lambda x: x[0])
+        cands = [(an, acc)] + [(nm + " accent", acc_list(oklch(h)[1], nudge(oklch(h)[2], sec))) for nm, h in BL]
+        cb = [(an, aC, aH)] + [(nm + " accent", oklch(h)[1], nudge(oklch(h)[2], sec, .3, 6)) for nm, h in BL]
         cb = [x for x, (n, l) in zip(cb, cands) if l]; cands = [(n, l) for n, l in cands if l]; used = set()
         for i, t in enumerate(tx['opts']):
             j = 0 if i == 0 else next((j for j, (n, l) in enumerate(cands) if j not in used and dE(l[0], t['hex']) >= 12),
@@ -417,7 +447,7 @@ def extras(sec, P, cards, TX):
         cct = [dict(x) for x in cc if min(ratio(x['hex'], b) for b in steps) >= 3]
         if dark:
             rL_, rC_, rH_ = oklch(P['red'])
-            for h, l in [("#FFFFFF", "White, ink label"), (from_oklch(.92, .035, rH_), "Pale red, ink label"), (from_oklch(.92, .03, oklch(BRAND[0][1])[2]), "Pale blue, ink label")]:
+            for h, l in [("#FFFFFF", "White, ink label"), (from_oklch(.92, .035, BRASS), "Pale stone, ink label"), (from_oklch(.92, .03, oklch(BRAND[0][1])[2]), "Pale blue, ink label")]:
                 f = darken_to(P['ink'], [h])
                 if min(ratio(h, b) for b in steps) >= 3 and ratio(f, h) >= AAA: cct.append({"hex": h, "label": l, "fg": f})
         if not cct: cct = [dict(x) for x in cc]; REPORT.append(f"  ! {label} on {sec}: no button reaches 3:1 on the card")
