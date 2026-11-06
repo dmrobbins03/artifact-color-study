@@ -1,0 +1,40 @@
+{
+  "figma": {
+    "file": "gQpCkvfeDvKOyxWztJongv",
+    "node": "4:992",
+    "hash": "a9248bc2",
+    "list": [
+      "#000000",
+      "#000000@0",
+      "#041E4A",
+      "#041E4A@12",
+      "#041E4A@55",
+      "#041E4A@82",
+      "#062B66",
+      "#1C2740",
+      "#5F6D86",
+      "#757575",
+      "#767676",
+      "#C4262E",
+      "#C9D6EA",
+      "#D8DFEC",
+      "#E8EEF8",
+      "#EEF3FB",
+      "#F4F6FA",
+      "#F8FAFC",
+      "#FFFFFF",
+      "#FFFFFF@16",
+      "#FFFFFF@28",
+      "#FFFFFF@55",
+      "#FFFFFF@58",
+      "#FFFFFF@70",
+      "#FFFFFF@8",
+      "IMAGE"
+    ],
+    "frame": "2560w - Transformative Leadership Initiative",
+    "checked": "2026-11-05"
+  },
+  "palette_updated": "2026-11-05 late (Limestone Flag: nine sections, off-white base, three cool steps to flag blue; comp2 removed)",
+  "artifact": "https://claude.ai/artifact/FHLCgkWTUfCnL5ijfhbxKU",
+  "settings": "claude/tli-swatch-settings.json"
+}

@@ -1,0 +1,1327 @@
+<title>__TITLE__</title>
+<meta name="claude:viewport-fit-sides" content="cover" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+/>
+<!--
+  SWATCH TEMPLATE
+  Edit only the CONFIG object in the <script> at the bottom (or let swatch_kit.py fill the CONFIG placeholder). Contrast ratios are computed live.
+  swatch fields: hex (required), name, use, pick (bool), fg (text color, default auto white/navy),
+                 on (optional backdrop hex: shows the swatch as a card sitting on that background),
+                 border (hex: draws the card edge), borders ([{hex,label}]: border options; add default:true to pick the one previewed first; each shows
+                 as a square in a split chip above the preview box and as a row in a "Border options" accordion with its own Copy; clicking a chip or row previews it),
+                 overlays ([{hex,label}]: fill variants, -3 to +3 steps; split strip of squares inside the preview box (one 1px outline around the whole strip in the current border color) plus an "Overlay options" accordion; clicking one previews it on the right half of the box beside the original; clicking the original half or the same overlay again clears it),
+                 texts ([{hex,label}]: text color options for this fill; the first is the default. "Aa" + "Small text" sits bottom-left of the preview box, and a second copy bottom-right appears only while an overlay is
+                 previewed, so it shows the text on the overlay; the text chips sit below the box in the stage's bottom-right with a "Text options" label, plus a "Text options" accordion and a Text row in Selected colors),
+                 layout ({eyebrow,h,cardH,cardP,ctaLabel,accent,muted,cta,card,cardBorder}: section rows. The preview becomes a 4:3 box with an eyebrow + headline and a card
+                 (eyebrow, headline, body, button) in the left half; the right half repeats it only while an overlay is previewed. Headlines use the current text option),
+                 text (bool, with on: shows hex as type on the backdrop, contrast measured against the backdrop)
+  extra ({k:{label,var,opts:[{hex,label}],def}}: section rows only. Labeled chip groups: key 'a' joins Overlay and Text in the top bar, the rest form the bottom bar;
+                 each sets its CSS variable on the preview (--acc, --cbg, --cbd, --cacc, --ctx headline, --cmut body, --cta) and adds a Selected colors row;
+                 the template adds a 'cp' Card body key after 'ct' (relabelled Card headline) from each theme's mut + text list),
+  group fields: title, sub, swatches, one (bool: one swatch per row), compact (bool: brand-color strip of chips with Copy, no options)
+                 swatches with borders or overlays also get a reset icon (top left of the stage, shown only after the preview changes) and a "Selected colors" section (above the accordions)
+  pairing fields: title, sub, bg, tag, tagColor, heading, headFg, cardBg, cardFg, cardBorder, linkColor, button (bool), btnColor, cards:[{h,p,cta}]
+  stacked pairing: stack:[{bg,n,kind:'text'|'cards'|'cta',h,p}] plus muted, headFg, tagColor, cardBg, cardBorder, cardFg, btnColor, cards
+-->
+<style>
+  :root {
+    --bg: #f4f6f9;
+    --surface: #ffffff;
+    --ink: #1b2a41;
+    --muted: #4a5568;
+    --line: #e1e7ef;
+    --accent: #9c3d3a;
+    --accent-soft: #f6eef0;
+    --display: 'Playfair Display', Georgia, serif;
+    --body: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      --bg: #0f1724;
+      --surface: #172234;
+      --ink: #e6ecf4;
+      --muted: #a3b0c2;
+      --line: #26344a;
+      --accent: #e39a95;
+      --accent-soft: #2a1e24;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme='dark'] {
+    --bg: #0f1724;
+    --surface: #172234;
+    --ink: #e6ecf4;
+    --muted: #a3b0c2;
+    --line: #26344a;
+    --accent: #e39a95;
+    --accent-soft: #2a1e24;
+    color-scheme: dark;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.5 var(--body);
+  }
+  .wrap {
+    --gut: 80px;
+    max-width: calc(1440px + 2 * var(--gut));
+    margin: 0 auto;
+    padding-block: 40px 64px;
+    padding-left: max(var(--gut), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--gut), env(safe-area-inset-right, 0px));
+    display: grid;
+    gap: 44px;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  h1 {
+    font: 400 clamp(28px, 4vw, 40px)/1.15 var(--display);
+    margin: 6px 0 8px;
+    text-wrap: balance;
+  }
+  h2 {
+    font: 400 24px/1.2 var(--display);
+    margin: 0 0 4px;
+    text-wrap: balance;
+  }
+  .lede,
+  .sub {
+    color: var(--muted);
+    margin: 0;
+    max-width: 65ch;
+  }
+  section {
+    display: grid;
+    gap: 16px;
+  }
+  .anchor {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .anchor .chip {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    flex: none;
+  }
+  .anchor .hex {
+    font: 400 20px var(--mono);
+  }
+  .row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  @media (max-width: 900px) {
+    .row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 900px) {
+    .wrap {
+      --gut: 16px;
+    }
+  } /* 1440px content, 80px side margins; 16px on narrow screens */
+  @media (max-width: 560px) {
+    .row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  .sw {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--surface);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-width: 0;
+  }
+  .sw .c {
+    aspect-ratio: 1/1;
+    max-width: 100%;
+    padding: 14px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    font-weight: 600;
+    position: relative;
+  }
+  .sw .c .tx {
+    display: grid;
+    gap: 2px;
+    align-content: end;
+  }
+  .sw .c .tx .h {
+    font: 400 30px/1.1 var(--display);
+  }
+  .sw .c .tx .cap {
+    font: 500 13px var(--body);
+  }
+  .sw .c .tx2 {
+    text-align: right;
+    justify-items: end;
+    visibility: hidden;
+  }
+  .sw .c.ov .tx2 {
+    visibility: visible;
+  }
+  .twrap {
+    position: absolute;
+    bottom: 11px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sw .rt {
+    font: 500 12px var(--mono);
+    color: var(--ink);
+    margin-left: 6px;
+  }
+  .sw .stage {
+    aspect-ratio: 1/1;
+    max-width: 100%;
+    padding: 44px 16px;
+    display: grid;
+    position: relative;
+    --chip: 22px;
+  }
+  .sw .stage .c {
+    aspect-ratio: auto;
+    border-radius: 6px;
+    border: 1px solid transparent;
+  }
+  .chips {
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .chips button {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: block;
+  }
+  .chips button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+  }
+  .chips button {
+    width: var(--chip, 22px);
+    height: var(--chip, 22px);
+  }
+  .bwrap {
+    position: absolute;
+    top: 11px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .blab {
+    font: 600 11px var(--body);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    white-space: nowrap;
+  }
+  .ochips {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: 1px solid var(--bd, transparent);
+  }
+  .sw .acc {
+    border-top: 1px solid var(--line);
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+  .sw .acc summary {
+    font: 600 11px var(--body);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    list-style: none;
+    padding-block: 2px;
+  }
+  .sw .acc summary::-webkit-details-marker {
+    display: none;
+  }
+  .sw .acc summary::after {
+    content: '+';
+    font: 500 14px var(--mono);
+    letter-spacing: 0;
+  }
+  .sw .acc[open] > summary::after {
+    content: '\2212';
+  }
+  .sw .acc summary .cur {
+    font: 500 12px var(--mono);
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink);
+    margin-left: auto;
+  }
+  .sw .acc summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .sw .opts {
+    display: grid;
+    gap: 6px;
+    padding-top: 8px;
+  }
+  .sw .opt,
+  .sw .srow {
+    display: grid;
+    grid-template-columns: 12px minmax(0, 1fr) auto;
+    gap: 8px;
+    align-items: center;
+    padding: 4px 6px;
+    margin-inline: -7px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font: 500 13px var(--mono);
+    color: var(--ink);
+  }
+  .sw .opt.on {
+    border-color: var(--muted);
+  }
+  .sw .srow {
+    padding-inline: 0;
+    margin-inline: 0;
+  }
+  .sw .sel {
+    border-top: 1px solid var(--line);
+    margin-top: 8px;
+    padding-top: 8px;
+    display: grid;
+    gap: 6px;
+  }
+  .sw .sel .bh {
+    font: 600 11px var(--body);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  /* details panel mirrors the controls: Section controls, then Card themes; rows that share a pill sit in one .sg group with a rule */
+  .sw .sel .sh {
+    font: 600 10px var(--body);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.8;
+    margin-top: 6px;
+  }
+  .sw .sg {
+    display: grid;
+    gap: 6px;
+  }
+  /* rows sharing a pill stay in line; a vertical line through the swatch column joins them (swatches are 12px, centered in each row) */
+  .sw .sg > .srow {
+    position: relative;
+  }
+  .sw .sg > .srow:not(:last-child)::after,
+  .sw .sg > .srow:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    left: 5.5px;
+    width: 1px;
+    background: var(--muted);
+    opacity: 0.55;
+  }
+  .sw .sg > .srow:not(:last-child)::after {
+    top: calc(75% + 4.5px);
+    bottom: -7px;
+  } /* each joint is half the swatch-to-swatch distance, centered */
+  .sw .sg > .srow:not(:first-child)::before {
+    top: -1px;
+    bottom: calc(75% + 4.5px);
+  }
+  /* in the accordions the grouped headers keep their alignment; the line sits in the box's left padding */
+  .sw .nest > .sg {
+    position: relative;
+  }
+  .sw .nest > .sg::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 12px;
+    bottom: 12px;
+    width: 1px;
+    background: var(--muted);
+    opacity: 0.55;
+  }
+  .sw .nest .sg {
+    gap: 0;
+    margin-top: 8px;
+  }
+  .sw .nest > .sg:first-child {
+    margin-top: 0;
+  }
+  .sw .nest .sg > .acc:first-child {
+    margin-top: 0;
+  }
+  .reset {
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.75;
+  }
+  .reset[hidden] {
+    display: none;
+  }
+  .reset:hover {
+    opacity: 1;
+  }
+  .reset:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 1px;
+  }
+  .sw .opt i,
+  .sw .srow i {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+  }
+  .sw .srow .bl,
+  .sw .opt .bl {
+    display: grid;
+    gap: 0;
+    min-width: 0;
+  }
+  .sw .srow .bl small,
+  .sw .opt .bl small {
+    font: 400 12px var(--body);
+    color: var(--muted);
+  }
+  .sw .meta {
+    padding: 12px 14px;
+    display: grid;
+    gap: 4px;
+    align-content: start;
+  }
+  .sw .meta b {
+    font: 500 15px var(--mono);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .sw .meta span {
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .sw .meta .nm {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .pick {
+    font: 600 11px var(--body);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-style: normal;
+    margin-left: 6px;
+  }
+  .grade {
+    font: 600 11px var(--body);
+    letter-spacing: 0.06em;
+    border-radius: 4px;
+    padding: 1px 6px;
+    margin-left: 6px;
+  }
+  button.copy {
+    font: 500 12px var(--body);
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--muted);
+    border-radius: 999px;
+    padding: 2px 10px;
+    cursor: pointer;
+  }
+  button.copy:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .demo {
+    border-radius: 12px;
+    padding: 40px max(16px, 4vw);
+    display: grid;
+    gap: 20px;
+  }
+  .demo .tag {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .demo h3 {
+    font: 400 clamp(24px, 3vw, 32px)/1.2 var(--display);
+    margin: 0;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: 16px;
+  }
+  .card {
+    border-radius: 8px;
+    padding: 22px;
+    display: grid;
+    gap: 10px;
+    align-content: start;
+    min-width: 0;
+  }
+  .card h4 {
+    font: 500 19px/1.3 var(--body);
+    margin: 0;
+  }
+  .card p {
+    margin: 0;
+    font-size: 15px;
+  }
+  .card a {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .btn {
+    justify-self: start;
+    font: 600 13px var(--body);
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: #9c3d3a;
+    color: #fff;
+  }
+  .stackwrap {
+    border: 1px solid rgba(24, 46, 86, 0.16);
+    border-radius: 14px;
+    padding: 12px;
+  }
+  .stack {
+    border-radius: 8px;
+    overflow: hidden;
+    display: grid;
+  }
+  .stack .demo {
+    border-radius: 0;
+  }
+  .stack .lead {
+    margin: 0;
+    max-width: 62ch;
+    font-size: 16px;
+  }
+  .stack .cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .note {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 70ch;
+    margin: 0;
+  }
+  /* brand colors as a compact strip */
+  .brandrow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .bchip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 10px 4px 4px;
+    background: var(--surface);
+    font-size: 14px;
+  }
+  .bchip i {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+  }
+  .bchip code {
+    font: 500 13px var(--mono);
+    color: var(--muted);
+  }
+  /* section rows: one background per row, 2:1 preview with type and a card; details beside it */
+  .row.one {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sw.wide {
+    grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+    grid-template-rows: auto;
+  }
+  .sw.wide .stage {
+    aspect-ratio: auto;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  /* labeled option bars: overlay/accent/text above the preview, card options below */
+  .cbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    min-height: 24px;
+  }
+  .cbar.top {
+    padding-left: 32px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .cgrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .ctitle {
+    flex-basis: 100%;
+    font: 600 11px var(--body);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+  .sw .nest {
+    display: grid;
+    padding: 0 10px 8px;
+    margin-top: 8px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  } /* outlined box: its rows are children of the group heading */
+  .sw .nest > .acc:first-child,
+  .sw .nest > .sg:first-child > .acc:first-child {
+    border-top: 0;
+  }
+  .sw .sbox {
+    display: grid;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .sw .nest .acc {
+    margin-top: 4px;
+  }
+  .reset {
+    z-index: 1;
+  }
+  .cgrp {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 4px;
+    max-width: 100%;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 3px 3px 10px;
+    border: 1px solid var(--bd, currentColor);
+    border-radius: 6px;
+  }
+  .cgrp .chips {
+    border-radius: 3px;
+    border: 1px solid var(--bd, transparent);
+  }
+  .cgrp .cdiv {
+    align-self: stretch;
+    width: 1px;
+    margin: -3px 2px;
+    background: var(--bd, currentColor);
+  } /* one pill per text group: section Text | Accent, card Headline | Body | Accent; the accent list follows the text */
+  .sw.wide .ochips {
+    position: static;
+    border: 1px solid var(--bd, transparent);
+  }
+  .sw.wide .stage .c {
+    aspect-ratio: 4/3;
+    padding: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .sw.wide .stage .c.ov {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .lay {
+    padding: 20px 17.5%;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 14px;
+    min-width: 0;
+  }
+  .c.ov .lay {
+    padding: 20px 16px;
+  }
+  .lay > .hl {
+    margin-bottom: 0;
+  }
+  .lay > .sp {
+    margin: -4px 0 20px;
+    max-width: 46ch;
+    text-align: center;
+    font: 400 15px/1.5 var(--body);
+  }
+  .lay > .eb,
+  .lay > .hl {
+    text-align: center;
+  }
+  .sw .c .lay.tx2 {
+    text-align: left;
+    justify-items: center;
+    display: none;
+  }
+  .sw .c.ov .lay.tx2 {
+    display: grid;
+  }
+  .lay .eb {
+    font: 600 11px var(--body);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .lay .hl {
+    font: 400 24px/1.15 var(--display);
+    margin: 0;
+  }
+  .lay .cd {
+    border-radius: 10px;
+    padding: 22px;
+    display: grid;
+    gap: 10px;
+    border: 1px solid;
+    width: 100%;
+  }
+  .lay .cd .hl {
+    font-size: 22px;
+  }
+  .lay .cd p {
+    margin: 0;
+    font: 400 15px/1.5 var(--body);
+  }
+  .lay .cd .cta {
+    justify-self: start;
+    font: 600 13px var(--body);
+    padding: 8px 18px;
+    border-radius: 999px;
+    color: #fff;
+  }
+  @media (max-width: 900px) {
+    .sw.wide {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .sw.wide .stage .c {
+      aspect-ratio: auto;
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
+
+<div class="wrap" id="app"></div>
+
+<script>
+  const CONFIG = __CONFIG__;
+  function lum(hex) {
+    const n = hex.replace('#', '');
+    const c = [0, 2, 4]
+      .map((i) => parseInt(n.slice(i, i + 2), 16) / 255)
+      .map((x) =>
+        x <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4),
+      );
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  }
+  function ratio(a, b) {
+    const x = lum(a),
+      y = lum(b);
+    return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+  }
+  function autoFg(hex) {
+    return ratio(hex, '#FFFFFF') >= ratio(hex, '#1B2A41')
+      ? '#FFFFFF'
+      : '#1B2A41';
+  }
+  function grade(r) {
+    return r >= 7
+      ? ['AAA', '#1E6B3A', '#E3F2E8']
+      : r >= 4.5
+        ? ['AA', '#1E6B3A', '#E3F2E8']
+        : r >= 3
+          ? ['Large only', '#8A5A00', '#FBF0D9']
+          : ['Fail', '#9C3D3A', '#F6EEF0'];
+  }
+  const esc = (s) =>
+    String(s ?? '').replace(
+      /[&<>"]/g,
+      (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c],
+    );
+  const app = document.getElementById('app');
+  app.insertAdjacentHTML(
+    'beforeend',
+    `<header><div class="eyebrow">${esc(CONFIG.eyebrow)}</div><h1>${esc(CONFIG.heading)}</h1><p class="lede">${esc(CONFIG.lede)}</p></header>`,
+  );
+  if (CONFIG.anchor) {
+    const a = CONFIG.anchor;
+    app.insertAdjacentHTML(
+      'beforeend',
+      `<section class="anchor"><div class="chip" style="background:${a.hex}"></div><div><h2>${esc(a.name)} · <span class="hex">${a.hex}</span></h2><p class="sub">${esc(a.note || '')} White text on it is ${ratio(a.hex, '#FFFFFF').toFixed(1)}:1.</p></div></section>`,
+    );
+  }
+  /* stacked page-order preview; one with `before` set renders just above the palette group of that title */
+  function stackHTML(p) {
+    const cardsH = p.cards
+      .map(
+        (c) =>
+          `<div class="card" style="background:${p.cardBg};color:${p.cardFg};border:1px solid ${p.cardBorder}"><h4>${esc(c.h)}</h4><p style="color:${p.muted}">${esc(c.p)}</p><span class="btn" style="background:${p.btnColor}">${esc(c.cta)}</span></div>`,
+      )
+      .join('');
+    const band = (b) =>
+      `<div class="demo" style="background:${b.bg};color:${b.fg || p.headFg}"><div class="tag" style="color:${b.tag || p.tagColor}">Section ${b.n} · ${b.bg}</div>${b.kind === 'cta' ? `<div class="cta"><div><h3>${esc(b.h)}</h3><p class="lead" style="color:${b.muted || p.muted}">${esc(b.p)}</p></div><span class="btn" style="background:${p.btnColor};font-size:15px;padding:10px 22px">${esc(b.h)}</span></div>` : `<h3>${esc(b.h)}</h3>${b.kind === 'cards' ? `<div class="cards">${cardsH}</div>` : `<p class="lead" style="color:${b.muted || p.muted}">${esc(b.p)}</p>`}`}</div>`;
+    return `<div class="stackwrap"><div class="stack">${p.stack.map(band).join('')}</div></div>`;
+  }
+  /* card headline and body are separate controls: "Card text" drives the headline only, and each theme gets a body list
+   built from its muted body color plus its other text colors, so body copy can be set to white, muted or ink on its own */
+  function bodyOpts(th) {
+    const seen = new Set(),
+      L = [];
+    const add = (hex, label) => {
+      const k = hex.toUpperCase();
+      if (seen.has(k)) return;
+      seen.add(k);
+      L.push({ hex, label });
+    };
+    const m = th.ct.opts.find(
+      (o) => o.hex.toUpperCase() === th.mut.toUpperCase(),
+    );
+    add(th.mut, m ? m.label : 'Muted body');
+    th.ct.opts.forEach((o) => add(o.hex, o.label));
+    return { opts: L, def: 0 };
+  }
+  /* section body copy gets its own control ('sb', --sbody): the section's text colors minus accents, defaulting to the muted one */
+  (CONFIG.groups || []).forEach((g) =>
+    (g.swatches || []).forEach((w) => {
+      if (!w.layout || !(w.texts || []).length || (w.extra && w.extra.sb))
+        return;
+      w.extra = w.extra || {};
+      const T = w.texts.filter((o) => !/accent/i.test(o.label)),
+        L = T.length ? T : w.texts,
+        d = Math.max(
+          0,
+          L.findIndex((o) => /muted/i.test(o.label)),
+        );
+      w.extra.sb = {
+        label: 'Body',
+        var: '--sbody',
+        opts: L.map((o) => ({ hex: o.hex, label: o.label })),
+        def: d,
+      };
+    }),
+  );
+  (CONFIG.groups || []).forEach((g) =>
+    (g.swatches || []).forEach((w) => {
+      const X = w.extra;
+      if (!X || !X.ct || X.cp) return;
+      X.ct = { ...X.ct, label: 'Card headline' };
+      let cp;
+      if (X.th) {
+        X.th.opts.forEach((t) => {
+          if (t.ct && t.mut) t.cp = bodyOpts(t);
+        });
+        cp = X.th.opts[X.th.def].cp;
+      }
+      if (!cp)
+        cp = bodyOpts({
+          ct: X.ct,
+          mut: (w.layout && w.layout.muted) || X.ct.opts[0].hex,
+        });
+      const N = {};
+      for (const k of Object.keys(X)) {
+        N[k] = X[k];
+        if (k === 'ct')
+          N.cp = {
+            label: 'Card body',
+            var: '--cmut',
+            opts: cp.opts,
+            def: cp.def,
+          };
+      }
+      w.extra = N;
+    }),
+  );
+  (CONFIG.groups || []).forEach((g) => {
+    /* a palette's page-order preview sits under its heading, in a bordered box; its intro joins the palette's intro */
+    const stk = (CONFIG.pairings || []).filter(
+      (p) => p.stack && p.before === g.title,
+    );
+    const s = document.createElement('section');
+    s.innerHTML = `<div><h2>${esc(g.title)}</h2><p class="sub">${esc([g.sub, ...stk.map((p) => p.sub)].filter(Boolean).join(' '))}</p></div>${stk.map(stackHTML).join('')}<div class="row"></div>`;
+    const row = s.querySelector('.row');
+    if (g.compact) {
+      row.className = 'brandrow';
+      row.innerHTML = g.swatches
+        .map(
+          (w) =>
+            `<span class="bchip"><i style="background:${w.hex}"></i><b>${esc(w.name)}</b><code>${w.hex}</code><button class="copy" type="button" data-hex="${w.hex}">Copy</button></span>`,
+        )
+        .join('');
+      app.appendChild(s);
+      return;
+    }
+    if (g.one) row.classList.add('one');
+    g.swatches.forEach((w) => {
+      const B =
+          w.borders || (w.border ? [{ hex: w.border, label: 'Border' }] : []),
+        O = w.overlays || [],
+        T = w.texts || [];
+      const di = Math.max(
+        0,
+        B.findIndex((b) => b.default),
+      );
+      if (B.length && !w.border) w.border = B[di].hex;
+      const fg = w.text ? w.hex : w.fg || (T.length ? T[0].hex : autoFg(w.hex)),
+        r = w.text ? ratio(w.hex, w.on) : ratio(w.hex, fg),
+        [gl, gc, gb] = grade(r);
+      const chips = (k, L, sel, cls) =>
+        L.length
+          ? `<span class="chips ${cls}">${L.map((o, i) => `<button type="button" data-k="${k}" data-i="${i}" aria-pressed="${i === sel}" style="background:${o.hex}" title="${esc(o.label)} ${o.hex}" aria-label="Preview ${{ b: 'border', o: 'overlay', t: 'text color' }[k]} ${esc(o.label)} ${o.hex}"></button>`).join('')}</span>`
+          : '';
+      const acc = (k, title, L, sel, vs, ref = w.hex) =>
+        L.length
+          ? `<details class="acc"><summary>${title}<span class="cur">${sel >= 0 ? L[sel].hex : ''}</span></summary><div class="opts">${L.map((o, i) => `<span class="opt${i === sel ? ' on' : ''}" data-k="${k}" data-i="${i}"><i style="background:${o.hex}"></i><span class="bl"><span>${o.hex}</span><small>${esc(o.label)} · ${ratio(o.hex, ref).toFixed(2)}:1 ${vs}</small></span><button class="copy" type="button" data-hex="${o.hex}">Copy</button></span>`).join('')}</div></details>`
+          : '';
+      const srow = (k, role, hex, lab) =>
+        `<span class="srow" data-s="${k}"><i style="background:${hex}"></i><span class="bl"><span>${hex}</span><small>${role} · ${esc(lab)}</small></span><button class="copy" type="button" data-hex="${hex}">Copy</button></span>`;
+      const stg = !!(w.on && !w.text),
+        LY = w.layout;
+      const X = w.extra || {},
+        XK = Object.keys(X),
+        cur = (k) => X[k].opts[X[k].def].hex;
+      const lay = (cls) =>
+        `<div class="lay ${cls}"><div class="eb" style="color:var(--acc)">${esc(LY.eyebrow)}</div><h3 class="hl">${esc(LY.h)}</h3><p class="sp" style="color:var(--sbody)">${esc(LY.body || CONFIG.sectionBody || 'Supporting copy sits under the headline at body size, so its color can be judged against the section.')}</p><div class="cd" style="background:var(--cbg);border-color:var(--cbd)"><div class="eb" style="color:var(--cacc)">${esc(LY.eyebrow)}</div><h4 class="hl" style="color:var(--ctx)">${esc(LY.cardH)}</h4><p style="color:var(--cmut)">${esc(LY.cardP)}</p><span class="cta" style="background:var(--cta);color:var(--ctaf,#fff)">${esc(LY.ctaLabel)}</span></div></div>`;
+      const CO = ['th', 'cb', 'cbd', 'ct', 'cp', 'ca', 'cc'],
+        TG = ['ct', 'cp', 'ca'],
+        CK = [
+          ...CO.filter((k) => XK.includes(k)),
+          ...XK.filter((k) => k !== 'a' && k !== 'sb' && !CO.includes(k)),
+        ];
+      const sg = (h) => (h ? `<div class="sg">${h}</div>` : ''),
+        cardKeys = (f) =>
+          CK.filter((k) => !TG.includes(k) || k === 'ct' || !XK.includes('ct'))
+            .map((k) =>
+              k === 'ct'
+                ? sg(
+                    TG.filter((t) => XK.includes(t))
+                      .map(f)
+                      .join(''),
+                  )
+                : f(k),
+            )
+            .join('');
+      const lb = (k) => {
+        const t = X[k].label.replace(/^Card /, '');
+        return t.charAt(0).toUpperCase() + t.slice(1);
+      };
+      const xrow = (k) => srow(k, lb(k), cur(k), X[k].opts[X[k].def].label);
+      const cacc = (k) => {
+        const sec = ['cb', 'cbd'].includes(k);
+        return acc(
+          k,
+          lb(k),
+          X[k].opts,
+          X[k].def,
+          sec ? 'vs section' : 'vs card',
+          sec ? w.hex : cur('cb'),
+        );
+      };
+      const selLY = () =>
+        `<span class="sh">Section controls</span><div class="sbox">${srow('bg', 'Background', w.hex, 'Original')}${sg((T.length ? srow('tx', 'Headline', T[0].hex, T[0].label) : '') + (XK.includes('sb') ? xrow('sb') : '') + (XK.includes('a') ? xrow('a') : ''))}${B.length ? srow('bd', 'Border', B[di].hex, B[di].label) : ''}</div>${CK.length ? '<span class="sh">Card themes</span><div class="sbox">' + cardKeys(xrow) + '</div>' : ''}`;
+      const grp = (lab, h) =>
+        h
+          ? `<span class="cgrp" style="color:${autoFg(w.on)}"><span class="blab">${lab}</span>${h}</span>`
+          : '';
+      const xvars = LY
+        ? `;--cmut:${LY.muted};--ctaf:${(X.cc && X.cc.opts[X.cc.def].fg) || '#FFFFFF'};` +
+          XK.map((k) => `${X[k].var}:${cur(k)}`).join(';')
+        : '';
+      const tile = w.text
+        ? `<div class="c" style="background:${w.on};color:${w.hex}"><span class="tx"><span class="h">Aa</span><span class="cap">Small text</span></span></div>`
+        : `<div class="c" data-fill="${w.hex}" data-bg="${w.hex}" data-fg="${fg}" style="background:${w.hex};color:${fg}${w.border ? `;border-color:${w.border};--bd:${w.border}` : ''}${xvars}">${LY ? '' : chips('o', O, -1, 'ochips')}${LY ? lay('') + lay('tx2') : `<span class="tx"><span class="h">Aa</span><span class="cap">Small text</span></span><span class="tx tx2"><span class="h">Aa</span><span class="cap">Small text</span></span>`}${stg || LY ? '' : chips('t', T, 0, 'tchips')}</div>`;
+      const sep =
+        w.on && !w.text
+          ? ` · ${ratio(w.hex, w.on).toFixed(2)}:1 vs backdrop`
+          : '';
+      const d = document.createElement('div');
+      d.className = 'sw' + (LY ? ' wide' : '');
+      d.innerHTML =
+        (w.on && !w.text
+          ? `<div class="stage"${LY ? ' data-n="26" data-off="380"' : ''} style="background:${w.on}">${B.length || O.length ? `<button class="reset" type="button" hidden style="color:${autoFg(w.on)}" aria-label="Reset to the recommended colors" title="Reset to the recommended colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></button>` : ''}${LY ? `<div class="cbar top"><span class="ctitle" style="color:${autoFg(w.on)}">Section controls</span>${grp('Background', chips('o', O, -1, 'ochips'))}${grp('Headline', chips('t', T, 0, 'tchips') + (XK.includes('sb') ? `<i class="cdiv"></i><span class="blab">${X.sb.label}</span>${chips('sb', X.sb.opts, X.sb.def, 'xchips')}` : '') + (XK.includes('a') ? `<i class="cdiv"></i><span class="blab">${X.a.label}</span>${chips('a', X.a.opts, X.a.def, 'xchips')}` : ''))}${grp('Border', chips('b', B, di, 'bchips'))}</div>` : ''}${B.length && !LY ? `<span class="bwrap"><span class="blab" style="color:${autoFg(w.on)}">Border options</span>${chips('b', B, di, 'bchips')}</span>` : ''}${tile}${
+              LY
+                ? `<div class="cgrid"><span class="ctitle" style="color:${autoFg(w.on)}">Card themes</span>${XK.filter(
+                    (k) =>
+                      k !== 'a' &&
+                      k !== 'sb' &&
+                      !((k === 'ca' || k === 'cp') && XK.includes('ct')),
+                  )
+                    .map((k) =>
+                      grp(
+                        X[k].label.replace(/^Card /, ''),
+                        chips(k, X[k].opts, X[k].def, 'xchips') +
+                          (k === 'ct' && XK.includes('cp')
+                            ? `<i class="cdiv"></i><span class="blab">${X.cp.label.replace(/^Card /, '')}</span>${chips('cp', X.cp.opts, X.cp.def, 'xchips')}`
+                            : '') +
+                          (k === 'ct' && XK.includes('ca')
+                            ? `<i class="cdiv"></i><span class="blab">${X.ca.label.replace(/^Card /, '')}</span>${chips('ca', X.ca.opts, X.ca.def, 'xchips')}`
+                            : ''),
+                      ),
+                    )
+                    .join('')}</div>`
+                : ''
+            }${T.length && !LY ? `<span class="twrap"><span class="blab" style="color:${autoFg(w.on)}">Text options</span>${chips('t', T, 0, 'tchips')}</span>` : ''}</div>`
+          : tile) +
+        `<div class="meta"><b>${w.hex}<button class="copy" type="button" data-hex="${w.hex}">Copy</button></b>
+      <span><span class="nm">${esc(w.name)}</span>${w.pick ? '<em class="pick">Pick</em>' : ''}<span class="rt">${r.toFixed(1)}:1</span><span class="grade" style="color:${gc};background:${gb}">${gl}</span></span>
+      <span>${esc(w.use || '')}</span>${w.on && w.on !== w.hex ? `<span>On ${w.on}${sep}</span>` : ''}${B.length || O.length ? `<div class="sel"><span class="bh">Selected colors</span>${LY ? selLY() : `${srow('bg', 'Background', w.hex, 'Original')}${B.length ? srow('bd', 'Border', B[di].hex, B[di].label) : ''}${T.length ? srow('tx', 'Text', T[0].hex, T[0].label) : ''}${XK.map((k) => srow(k, X[k].label, cur(k), X[k].opts[X[k].def].label)).join('')}`}</div>` : ''}${LY ? `<details class="acc"><summary>Section controls</summary><div class="nest">${acc('o', 'Background', O, -1, 'vs fill')}${sg(acc('t', 'Headline', T, 0, 'vs fill') + (XK.includes('sb') ? acc('sb', 'Body', X.sb.opts, X.sb.def, 'vs fill') : '') + (XK.includes('a') ? acc('a', 'Accent', X.a.opts, X.a.def, 'vs fill') : ''))}${acc('b', 'Border', B, di, 'vs fill')}</div></details>` : `${acc('b', 'Border options', B, di, 'vs fill')}${acc('o', 'Background options', O, -1, 'vs fill')}${acc('t', 'Text options', T, 0, 'vs fill')}`}${XK.length > 1 ? `<details class="acc"><summary>Card themes</summary><div class="nest">${cardKeys(cacc)}</div></details>` : ''}</div>`;
+      if (w.border) d.style.setProperty('--bd', w.border);
+      d.dataset.hex = w.hex;
+      d.dataset.di = di;
+      d._o = { b: B, o: O, t: T };
+      d._x = X;
+      d._xs = Object.fromEntries(XK.map((k) => [k, X[k].def]));
+      row.appendChild(d);
+    });
+    app.appendChild(s);
+  });
+  (CONFIG.pairings || []).forEach((p) => {
+    if (p.stack) {
+      if (!p.before) app.insertAdjacentHTML('beforeend', stackHTML(p));
+      return;
+    }
+    const cards = p.cards
+      .map(
+        (c) =>
+          `<div class="card" style="background:${c.bg || p.cardBg};color:${p.cardFg || autoFg(c.bg || p.cardBg)}${p.cardBorder ? `;border:1px solid ${p.cardBorder}` : ''}"><h4>${esc(c.h)}</h4><p${p.cardFg ? ` style="opacity:.88"` : ''}>${esc(c.p)}</p>${p.button ? `<span class="btn" style="background:${p.btnColor || '#9C3D3A'}">${esc(c.cta || 'Learn more')}</span>` : `<a style="color:${p.linkColor || 'inherit'}">Read more →</a>`}</div>`,
+      )
+      .join('');
+    app.insertAdjacentHTML(
+      'beforeend',
+      `<section><div><h2>${esc(p.title)}</h2><p class="sub">${esc(p.sub || '')}</p></div>
+  <div class="demo" style="background:${p.bg};color:${p.headFg || autoFg(p.bg)}"><div class="tag" style="color:${p.tagColor || '#A9C4DD'}">${esc(p.tag || '')}</div><h3>${esc(p.heading || '')}</h3><div class="cards">${cards}</div></div>
+  ${p.note ? `<p class="note">${esc(p.note)}</p>` : ''}</section>`,
+    );
+  });
+  if (CONFIG.footnote)
+    app.insertAdjacentHTML(
+      'beforeend',
+      `<p class="note">${esc(CONFIG.footnote)}</p>`,
+    );
+  function sel(sw, k, hex, lab) {
+    const r = sw.querySelector(`.srow[data-s="${k}"]`);
+    if (!r) return;
+    r.querySelector('i').style.background = hex;
+    r.querySelector('.bl span').textContent = hex;
+    const s = r.querySelector('small');
+    s.textContent = s.textContent.split(' · ')[0] + ' · ' + lab;
+    r.querySelector('button').dataset.hex = hex;
+  }
+  function updReset(sw) {
+    const rb = sw.querySelector('.reset');
+    if (!rb) return;
+    const bOn = sw.querySelector('.opt.on[data-k="b"]'),
+      tOn = sw.querySelector('.opt.on[data-k="t"]');
+    const xd = Object.entries(sw._xs || {}).some(
+      ([k, v]) => v !== sw._x[k].def,
+    );
+    rb.hidden = !(
+      sw.querySelector('.opt.on[data-k="o"]') ||
+      (bOn && +bOn.dataset.i !== +sw.dataset.di) ||
+      (tOn && +tOn.dataset.i !== 0) ||
+      xd
+    );
+  }
+  /* chip buttons and option rows, shared by the first render and by card themes, which swap the background and border lists */
+  function chipBtns(k, L, sel) {
+    return L.map(
+      (o, i) =>
+        `<button type="button" data-k="${k}" data-i="${i}" aria-pressed="${i === sel}" style="background:${o.hex}" title="${esc(o.label)} ${o.hex}" aria-label="Preview ${esc(o.label)} ${o.hex}"></button>`,
+    ).join('');
+  }
+  function optRows(k, L, sel, ref, vs) {
+    return L.map(
+      (o, i) =>
+        `<span class="opt${i === sel ? ' on' : ''}" data-k="${k}" data-i="${i}"><i style="background:${o.hex}"></i><span class="bl"><span>${o.hex}</span><small>${esc(o.label)} · ${ratio(o.hex, ref).toFixed(2)}:1 ${vs}</small></span><button class="copy" type="button" data-hex="${o.hex}">Copy</button></span>`,
+    ).join('');
+  }
+  /* accent lists arrive packed as [[name, dark, hex...]]; expand to chip options with step names */
+  function unA(P) {
+    return P.flatMap(([n, d, ...h]) =>
+      h.map((x, j) => ({
+        hex: x,
+        label: `${n} · ${(d ? ['vivid', 'light', 'palest'] : ['bright', 'mid', 'deep'])[j] || 'step ' + (j + 1)}`,
+      })),
+    );
+  }
+  function applyTheme(sw, i) {
+    const th = sw._x.th.opts[i];
+    /* background, border and accent lists belong to the theme: swap them (chips and accordion rows), then apply the theme's picks */
+    for (const kk of ['cb', 'cbd', 'ca', 'ct', 'cp', 'cc']) {
+      if (!th[kk] || !sw._x[kk]) continue;
+      sw._x[kk] = { ...sw._x[kk], opts: th[kk].opts, def: th[kk].def };
+      sw._xs[kk] = th[kk].def;
+      const box = sw.querySelector(`.chips button[data-k="${kk}"]`);
+      if (box) box.parentNode.innerHTML = chipBtns(kk, th[kk].opts, th[kk].def);
+      const row = sw.querySelector(`.opt[data-k="${kk}"]`);
+      if (row)
+        row.parentNode.innerHTML =
+          kk === 'ca' || kk === 'ct' || kk === 'cp' || kk === 'cc'
+            ? optRows(
+                kk,
+                th[kk].opts,
+                th[kk].def,
+                th.cb.opts[th.cb.def].hex,
+                'vs card',
+              )
+            : optRows(
+                kk,
+                th[kk].opts,
+                th[kk].def,
+                sw.dataset.hex,
+                'vs section',
+              );
+    }
+    preview(sw, 'cb', th.cb.def);
+    preview(sw, 'cbd', th.cbd.def);
+    preview(sw, 'ca', th.ca.def);
+    preview(sw, 'ct', th.ct.def);
+    if (th.cp && sw._x.cp) preview(sw, 'cp', th.cp.def);
+    preview(sw, 'cc', th.cc.def);
+    if (!sw._x.cp)
+      for (const e of [sw, ...sw.querySelectorAll('[style*="--cmut"]')])
+        if (e.style.getPropertyValue('--cmut'))
+          e.style.setProperty('--cmut', th.mut);
+  }
+  function preview(sw, k, i) {
+    if (k === 'th' && sw._x && sw._x.th) applyTheme(sw, i);
+    if (sw._x && sw._x[k]) {
+      const X = sw._x[k],
+        hex = X.opts[i].hex;
+      sw.querySelector('.c').style.setProperty(X.var, hex);
+      sw._xs[k] = i;
+      if (k === 'cc')
+        sw.querySelector('.c').style.setProperty(
+          '--ctaf',
+          X.opts[i].fg || '#FFFFFF',
+        ); /* light buttons on dark cards carry a dark label */
+      sw.querySelectorAll(`.chips button[data-k="${k}"]`).forEach((x, j) =>
+        x.setAttribute('aria-pressed', j === i),
+      );
+      const xr = sw.querySelectorAll(`.opt[data-k="${k}"]`);
+      xr.forEach((r, j) => r.classList.toggle('on', j === i));
+      if (xr[0]) xr[0].closest('.acc').querySelector('.cur').textContent = hex;
+      sel(sw, k, hex, X.opts[i].label);
+      if (k === 'ct' && X.opts[i].accs && sw._x.ca) {
+        /* card text brings its own accent list: swap the card Accent chips and rows, select its first */
+        const A = unA(X.opts[i].accs),
+          bg = sw._x.cb.opts[sw._xs.cb ?? sw._x.cb.def].hex;
+        sw._x.ca = { ...sw._x.ca, opts: A, def: 0 };
+        const box = sw.querySelector('.chips button[data-k="ca"]');
+        if (box) box.parentNode.innerHTML = chipBtns('ca', A, 0);
+        const row = sw.querySelector('.opt[data-k="ca"]');
+        if (row) row.parentNode.innerHTML = optRows('ca', A, 0, bg, 'vs card');
+        preview(sw, 'ca', 0);
+      }
+      updReset(sw);
+      return;
+    }
+    const c = sw.querySelector('.c'),
+      L = sw._o[k],
+      chips = sw.querySelectorAll(`.chips button[data-k="${k}"]`),
+      rows = sw.querySelectorAll(`.opt[data-k="${k}"]`);
+    const off = k === 'o' && rows[i].classList.contains('on'),
+      hex = off ? c.dataset.fill : L[i].hex;
+    if (k === 'b') {
+      c.style.borderColor = hex;
+      c.style.setProperty('--bd', hex);
+      sw.style.setProperty('--bd', hex);
+    } else if (k === 't') {
+      c.style.color = hex;
+      c.dataset.fg = hex;
+      if (L[i].accs && sw._x && sw._x.a) {
+        /* text brings its own accent list: swap the Accent chips and rows, select its first */
+        const A = unA(L[i].accs);
+        sw._x.a = { ...sw._x.a, opts: A, def: 0 };
+        sw._xs.a = 0;
+        const box = sw.querySelector('.chips button[data-k="a"]');
+        if (box) box.parentNode.innerHTML = chipBtns('a', A, 0);
+        const row = sw.querySelector('.opt[data-k="a"]');
+        if (row)
+          row.parentNode.innerHTML = optRows(
+            'a',
+            A,
+            0,
+            sw.dataset.hex,
+            'vs section',
+          );
+        preview(sw, 'a', 0);
+      }
+    } else {
+      c.style.background = off
+        ? hex
+        : `linear-gradient(90deg,${c.dataset.fill} 50%,${hex} 50%)`;
+      c.dataset.bg = hex;
+      c.classList.toggle('ov', !off);
+    }
+    if (k !== 'b') {
+      const q = ratio(c.dataset.bg, c.dataset.fg),
+        [gl, gc, gb] = grade(q),
+        gr = sw.querySelector('.grade');
+      sw.querySelector('.rt').textContent = q.toFixed(1) + ':1';
+      gr.textContent = gl;
+      gr.style.color = gc;
+      gr.style.background = gb;
+    }
+    rows.forEach((r, j) => r.classList.toggle('on', !off && j === i));
+    chips.forEach((x, j) => x.setAttribute('aria-pressed', !off && j === i));
+    rows[0].closest('.acc').querySelector('.cur').textContent = off ? '' : hex;
+    sel(
+      sw,
+      { b: 'bd', o: 'bg', t: 'tx' }[k],
+      hex,
+      off ? 'Original' : L[i].label,
+    );
+    updReset(sw);
+  }
+  function reset(sw) {
+    const on = sw.querySelector('.opt.on[data-k="o"]');
+    if (on) preview(sw, 'o', +on.dataset.i);
+    if (sw.querySelector('.opt[data-k="b"]')) preview(sw, 'b', +sw.dataset.di);
+    if (sw.querySelector('.opt[data-k="t"]')) preview(sw, 't', 0);
+    if (sw._x && sw._x.th) preview(sw, 'th', sw._x.th.def);
+    for (const k in sw._x || {}) if (k !== 'th') preview(sw, k, sw._x[k].def);
+  }
+  /* chip size: 12 overlay chips must fit across the preview box. Measured with one ResizeObserver instead of a CSS container query,
+   which made every click re-lay out all swatches (seconds per click on long pages). */
+  const chipRO = new ResizeObserver((es) => {
+    for (const e of es) {
+      const n = +e.target.dataset.n || 12,
+        off = +e.target.dataset.off || 24,
+        v =
+          Math.max(
+            n > 12 ? 14 : 0,
+            Math.min(22, Math.floor((e.contentRect.width - off) / n)),
+          ) + 'px';
+      if (e.target.style.getPropertyValue('--chip') !== v)
+        e.target.style.setProperty('--chip', v);
+    }
+  });
+  document.querySelectorAll('.sw .stage').forEach((s) => chipRO.observe(s));
+  /* copy: Clipboard API first; inside a sandboxed frame fall back to a hidden textarea so no selection is left behind */
+  function copyHex(hex) {
+    const legacy = () => {
+      const ta = document.createElement('textarea');
+      ta.value = hex;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText =
+        'position:fixed;top:0;left:0;opacity:0;pointer-events:none';
+      document.body.appendChild(ta);
+      ta.select();
+      let ok = false;
+      try {
+        ok = document.execCommand('copy');
+      } catch (e) {}
+      ta.remove();
+      getSelection().removeAllRanges();
+      return ok;
+    };
+    try {
+      if (navigator.clipboard && window.isSecureContext)
+        return navigator.clipboard.writeText(hex).then(
+          () => true,
+          () => legacy(),
+        );
+    } catch (e) {}
+    return Promise.resolve(legacy());
+  }
+  /* only a drag (text selection gesture) skips the preview; a leftover selection never blocks clicks */
+  let downAt = null,
+    dragged = false;
+  app.addEventListener('pointerdown', (e) => {
+    downAt = [e.clientX, e.clientY];
+  });
+  app.addEventListener('pointerup', (e) => {
+    dragged =
+      !!downAt &&
+      Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]) > 4 &&
+      !!getSelection().toString();
+  });
+  app.addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (b && b.classList.contains('copy')) {
+      copyHex(b.dataset.hex).then((ok) => {
+        b.textContent = ok ? 'Copied' : b.dataset.hex;
+        setTimeout(() => (b.textContent = 'Copy'), ok ? 1200 : 2500);
+      });
+      const row = b.closest('.opt');
+      if (row && !row.classList.contains('on'))
+        preview(row.closest('.sw'), row.dataset.k, +row.dataset.i);
+      return;
+    }
+    const t = b && b.dataset.k ? b : e.target.closest('.opt');
+    if (t) {
+      if (!dragged) preview(t.closest('.sw'), t.dataset.k, +t.dataset.i);
+      return;
+    }
+    if (b && b.classList.contains('reset')) {
+      reset(b.closest('.sw'));
+      return;
+    }
+    const c = e.target.closest('.c[data-fill]');
+    if (c) {
+      const r = c.getBoundingClientRect(),
+        sw = c.closest('.sw'),
+        on = sw.querySelector('.opt.on[data-k="o"]');
+      if (on && e.clientX < r.left + r.width / 2)
+        preview(sw, 'o', +on.dataset.i);
+    }
+  });
+</script>

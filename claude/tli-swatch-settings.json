@@ -1,0 +1,429 @@
+{
+ "title": "TLI Light Palettes",
+ "eyebrow": "transformativeleaders.us · color study",
+ "heading": "Three light palettes",
+ "lede": "Three light palettes for transformativeleaders.us. Each keeps Federal navy (#182E56) as ink, so TLI stays in the New Statecraft family while moving off the Institute's warm paper and dark navy bands.",
+ "footnote": "Every text color is held to WCAG AAA (7:1) against what it sits on: section headline, body and accent on each section background, and card headline, body and accent on every background of every card theme; buttons reach 3:1 on their card and their labels 7:1. The lightest tints stay at least ΔE 5 from the Institute's paper (#F6F3EC) so TLI doesn't read as the same site; the Institute itself stays on that warm paper with ink monochrome text, and none of these reuse it. Contrast is calculated live from the hex values.",
+ "mode": "light",
+ "brand": [
+  [
+   "Logo blue",
+   "#135389",
+   null,
+   "logo"
+  ],
+  [
+   "Logo red",
+   "#E61C2C",
+   null,
+   "logo"
+  ]
+ ],
+ "paper": "#F6F3EC",
+ "avoid": [
+  "#F6F3EC"
+ ],
+ "brand_sub": "New Statecraft's logo colors. Every palette below is checked against them for hue harmony.",
+ "sample": {
+  "tag": "The Initiative",
+  "heading": "Change the incentives that drive Washington.",
+  "cards": [
+   {
+    "h": "The Accord",
+    "p": "Invites congressional candidates from both parties — or no party — to commit to competitive elections, fiscal responsibility, and accountable institutions.",
+    "cta": "Explore the Accord"
+   },
+   {
+    "h": "The Scorecard",
+    "p": "Recognizes federal lawmakers who champion the Accord's agenda for reform during a two-year term of Congress.",
+    "cta": "See the Scorecard"
+   }
+  ]
+ },
+ "section_uses": [
+  "Lightest band: intro copy, the Accord list, long-form reading.",
+  "Middle band: card grids and forms. Cards below sit on it.",
+  "Deepest cool band: Join the movement, replacing a dark navy band."
+ ],
+ "comp_uses": [
+  "Warm counterpoint to Section 1: the Accord framework and long copy.",
+  "Warm mid band: the Scorecard or a pull quote.",
+  "Deepest warm band: Support the Initiative and donation strip."
+ ],
+ "stack_sub": "Cool and warm alternate the way the TLI page runs: intro, Initiative cards, Accord, Scorecard, Join the movement, Support.",
+ "stack": [
+  {
+   "sec": "paper",
+   "kind": "text",
+   "h": "Restore public trust in government.",
+   "p": "We firmly believe that much of the current dysfunction in Congress can be fixed by electing and empowering a critical mass of lawmakers willing to put country before party."
+  },
+  {
+   "sec": "area",
+   "kind": "cards"
+  },
+  {
+   "sec": "comp1",
+   "kind": "text",
+   "h": "A framework for practical governance reforms.",
+   "p": "Citizens' trust in government has collapsed and restoring it will require fundamental changes."
+  },
+  {
+   "sec": "comp2",
+   "kind": "text",
+   "h": "Rewarding results.",
+   "p": "The inaugural Scorecard will be published in 2028, at the conclusion of the next session of Congress."
+  },
+  {
+   "sec": "band",
+   "kind": "text",
+   "h": "Join the movement.",
+   "p": "Leaders and citizens across the country are uniting behind a better way forward."
+  },
+  {
+   "sec": "comp3",
+   "kind": "cta",
+   "h": "Support the Initiative",
+   "p": "Help fund strategic outreach to all congressional candidates."
+  }
+ ],
+ "palettes": [
+  {
+   "name": "1 · Capitol Mist",
+   "comp": [
+    "#F9EEDC",
+    "#F2E3CA",
+    "#E8D3B0"
+   ],
+   "comp_name": "Wheat and sand",
+   "sub": "Cool blue-gray paper and pale slate section areas, Federal navy ink, logo red buttons. The most direct light inversion of the navy scheme: same hue family, flipped value.",
+   "paper": "#F4F6FA",
+   "area": "#E3E9F2",
+   "band": "#CCD6E5",
+   "ink": "#182E56",
+   "accent": "#24467F",
+   "red": "#D41A29",
+   "red_name": "CTA red (logo red, ½ step darker)",
+   "mood": "Cool blue-gray paper and pale slate sections with Federal navy ink and logo red buttons: the most direct light inversion of the Institute's navy scheme, the same family with its values flipped. Wheat and sand tints warm the second half of the page.",
+   "tech": "Sections 1–3 are the cool blue-gray, lightest to deepest (#F4F6FA to #CCD6E5). Sections 4–6 are wheat and sand at hue 37°, the complement of the 219° ink.",
+   "harmony": "area, ink and accent all within 11° of Logo blue (same family); CTA on Logo red's hue"
+  },
+  {
+   "name": "2 · Limestone",
+   "comp": [
+    "#F9EAE0",
+    "#F0DFD3",
+    "#E5CBB9"
+   ],
+   "comp_name": "Clay and terracotta, the complement of the navy accents",
+   "sub": "Near-neutral cool stone, like the Capitol's limestone in shade, with a pale blue-gray third section for contrast. Navy ink and accents carry all the color. Section 1 leans just cool enough (#F3F6F8) and Section 2 a touch deeper (#E5E6E2) to stay clearly apart from the Institute's warm cream (ΔE 5+) without going blue.",
+   "paper": "#F3F6F8",
+   "area": "#E5E6E2",
+   "band": "#DDE3EB",
+   "ink": "#182E56",
+   "accent": "#2A4779",
+   "red": "#C41E2D",
+   "red_name": "CTA red (brick step)",
+   "mood": "Near-neutral cool stone, like the Capitol's limestone in shade, with a pale blue-gray third section for contrast. Navy ink and accents carry all the color, and clay and terracotta tints warm the second half.",
+   "tech": "Section 1 leans just cool enough (#F3F6F8) and Section 2 a touch deeper (#E5E6E2) to stay ΔE 5+ from the Institute's warm cream without going blue. Sections 4–6 are clay tints at hue 25°, the complement of the navy.",
+   "harmony": "ink and accent within 11° of Logo blue (same family); CTA within 1° of Logo red"
+  },
+  {
+   "name": "3 · Limestone Flag",
+   "comp_name": "a light clay tint",
+   "sub": "Limestone's cool stone sections on a neutral off-white base, one clay tint for warmth, and three cool steps that walk down to a deep flag blue (#0A3161) for the closing call to action. The steps skip the middle grays, where neither navy nor white text reaches AAA.",
+   "paper": "#F3F6F8",
+   "area": "#E5E6E2",
+   "band": "#DDE3EB",
+   "ink": "#182E56",
+   "accent": "#2A4779",
+   "red": "#C41E2D",
+   "red_name": "CTA red (brick step)",
+   "sections": [
+    {
+     "key": "off",
+     "hex": "#FDFDFD",
+     "name": "off-white",
+     "use": "Page base: the lightest band, for the intro and long reading. Neutral, ΔE 5 from the Institute's cream."
+    },
+    {
+     "key": "paper",
+     "hex": "#F3F6F8",
+     "name": "paper",
+     "use": "Cool stone paper: the Scorecard or a pull quote."
+    },
+    {
+     "key": "area",
+     "hex": "#E5E6E2",
+     "name": "tint",
+     "use": "Middle band: card grids and forms. Cards below sit on it."
+    },
+    {
+     "key": "band",
+     "hex": "#DDE3EB",
+     "name": "deep tint",
+     "use": "Pale blue-gray band: Join the movement."
+    },
+    {
+     "key": "comp1",
+     "hex": "#F9EAE0",
+     "name": "light clay",
+     "use": "Warm counterpoint: the Accord framework and long copy."
+    },
+    {
+     "key": "cool1",
+     "hex": "#CBD7E8",
+     "name": "light flag step",
+     "use": "First step toward flag blue: a light feature band."
+    },
+    {
+     "key": "cool2",
+     "hex": "#BBC9DB",
+     "name": "mid flag step",
+     "use": "Second step: the deepest light band that still holds navy text at AAA."
+    },
+    {
+     "key": "cool3",
+     "hex": "#344358",
+     "name": "deep flag step",
+     "use": "Third step: a dark slate band with white text, leading into flag blue."
+    },
+    {
+     "key": "flag",
+     "hex": "#0A3161",
+     "name": "flag blue",
+     "use": "Deep flag-blue band: Support the Initiative and donation strip, with white text."
+    }
+   ],
+   "stack": [
+    {
+     "sec": "off",
+     "kind": "text",
+     "h": "Restore public trust in government.",
+     "p": "We firmly believe that much of the current dysfunction in Congress can be fixed by electing and empowering a critical mass of lawmakers willing to put country before party."
+    },
+    {
+     "sec": "area",
+     "kind": "cards"
+    },
+    {
+     "sec": "comp1",
+     "kind": "text",
+     "h": "A framework for practical governance reforms.",
+     "p": "Citizens' trust in government has collapsed and restoring it will require fundamental changes."
+    },
+    {
+     "sec": "paper",
+     "kind": "text",
+     "h": "Rewarding results.",
+     "p": "The inaugural Scorecard will be published in 2028, at the conclusion of the next session of Congress."
+    },
+    {
+     "sec": "band",
+     "kind": "text",
+     "h": "Join the movement.",
+     "p": "Leaders and citizens across the country are uniting behind a better way forward."
+    },
+    {
+     "sec": "cool1",
+     "kind": "text",
+     "h": "Leaders across the country.",
+     "p": "A light flag step for a feature or quote."
+    },
+    {
+     "sec": "cool2",
+     "kind": "cards"
+    },
+    {
+     "sec": "cool3",
+     "kind": "text",
+     "h": "Put country before party.",
+     "p": "A dark slate step that leads into flag blue."
+    },
+    {
+     "sec": "flag",
+     "kind": "cta",
+     "h": "Support the Initiative",
+     "p": "Help fund strategic outreach to all congressional candidates."
+    }
+   ],
+   "mood": "Limestone's cool stone on a neutral off-white base, one light clay tint for warmth, then a walk down through cool steps to a deep flag blue for the closing call to action: one strong dark anchor on an otherwise light page.",
+   "tech": "The clay tint sits at hue 24°. The cool steps skip the middle grays (about OKLCH L .48–.78), where neither navy nor white text reaches AAA, so Sections 6–7 take navy text and Sections 8–9 white, ending on flag blue #0A3161.",
+   "harmony": "ink and accent within 11° of Logo blue (same family); CTA within 1° of Logo red",
+   "stack_sub": "The nine sections in page order: intro, Initiative cards, Accord, Scorecard and Join the movement as in Limestone, then the three cool steps walk down from a light feature band to the flag-blue Support band."
+  }
+ ],
+ "mood": {
+  "words": "civic, institutional, serious and trustworthy, rooted in Federal navy and the materials of public buildings (limestone, marble, granite, bronze, parchment, official seals): muted, dusty and greyed tones with navy and logo-red anchors; never pastel, candy, blush, lavender or playful",
+  "light_card_max_chroma": 0.028,
+  "dark_card_max_chroma": 0.065,
+  "themes": [
+   {
+    "label": "Granite",
+    "cool": true,
+    "note": "data, research and reference panels: cool blue-grey stone",
+    "bg": [
+     "ink",
+     "Logo blue",
+     0.3
+    ],
+    "c": 0.7,
+    "acc": [
+     "ink",
+     "Logo blue",
+     0.3
+    ],
+    "s": 0.45
+   },
+   {
+    "label": "Parchment",
+    "note": "history, founding documents and the Accord text: warm charter paper",
+    "bg": [
+     "#D9CCB0",
+     "section",
+     0.15
+    ],
+    "c": 0.8,
+    "acc": [
+     "ink",
+     "ink",
+     0
+    ]
+   },
+   {
+    "label": "Bronze",
+    "note": "honors, awards and Scorecard results: a dark bronze plaque",
+    "tone": "dark",
+    "bg": [
+     "Logo red",
+     "ink",
+     0.45
+    ],
+    "shift": 30,
+    "c": 0.8,
+    "acc": [
+     "Logo red",
+     "Logo red",
+     0
+    ],
+    "s": 0.2
+   },
+   {
+    "label": "Seal blue",
+    "cool": true,
+    "note": "official statements and endorsements: the logo blue deepened like an official seal",
+    "tone": "dark",
+    "bg": [
+     "Logo blue",
+     "ink",
+     0.2
+    ],
+    "acc": [
+     "Logo blue",
+     "Logo blue",
+     0
+    ],
+    "s": 0.2
+   },
+   {
+    "label": "Chamber navy",
+    "cool": true,
+    "note": "press, quotes and testimony: deep chamber navy with a logo-red accent",
+    "tone": "dark",
+    "bg": [
+     "ink",
+     "section",
+     0.2
+    ],
+    "acc": [
+     "Logo red",
+     "Logo red",
+     0
+    ]
+   }
+  ]
+ },
+ "mood_review": [
+  {
+   "theme": "Wada purple",
+   "section": "*",
+   "why": "reads Pink Champagne / Violet Vogue / Light Lilac by hex: candy, off-mood"
+  },
+  {
+   "theme": "Charter rose",
+   "section": "*",
+   "why": "reads Blowing Kisses / Porcelain Blush by hex: blush, off-mood"
+  },
+  {
+   "theme": "Fellowship plum",
+   "section": "*",
+   "why": "reads Pink Champagne by hex: off-mood"
+  },
+  {
+   "theme": "Bronze",
+   "section": "#F4F6FA",
+   "why": "reads as brown (Hairy Heath) with pink accents on cool sections"
+  },
+  {
+   "theme": "Bronze",
+   "section": "#E3E9F2",
+   "why": "reads as brown (Hairy Heath) with pink accents on cool sections"
+  },
+  {
+   "theme": "Bronze",
+   "section": "#CCD6E5",
+   "why": "reads as brown (Hairy Heath) with pink accents on cool sections"
+  },
+  {
+   "theme": "Bronze",
+   "section": "#F3F6F8",
+   "why": "reads as brown (Hairy Heath) with pink accents on cool sections"
+  },
+  {
+   "theme": "Bronze",
+   "section": "#E5E6E2",
+   "why": "reads as brown (Hairy Heath) with pink accents on cool sections"
+  },
+  {
+   "theme": "Bronze",
+   "section": "#DDE3EB",
+   "why": "reads as brown (Hairy Heath) with pink accents on cool sections"
+  },
+  {
+   "theme": "Bronze",
+   "section": "#0A3161",
+   "why": "reads as brown (Hairy Heath) with pink accents on cool sections"
+  },
+  {
+   "theme": "Bronze",
+   "section": "#FDFDFD",
+   "why": "flat brown (Hairy Heath) reads muddy on cool or neutral stone, as on the other cool sections"
+  },
+  {
+   "theme": "Bronze",
+   "section": "#CBD7E8",
+   "why": "flat brown (Hairy Heath) reads muddy on cool or neutral stone, as on the other cool sections"
+  },
+  {
+   "theme": "Bronze",
+   "section": "#BBC9DB",
+   "why": "flat brown (Hairy Heath) reads muddy on cool or neutral stone, as on the other cool sections"
+  },
+  {
+   "theme": "Bronze",
+   "section": "#344358",
+   "why": "flat brown (Hairy Heath) reads muddy on cool or neutral stone, as on the other cool sections"
+  },
+  {
+   "theme": "Deep tone",
+   "section": "#344358",
+   "why": "dark purple (Haunted Candelabra) on slate drifts off the navy/red brand"
+  },
+  {
+   "theme": "Capitol stone",
+   "section": "#0A3161",
+   "why": "its warm shift from flag blue swings past red to pink (Sweet and Sassy)"
+  }
+ ],
+ "refs": "refs.json"
+}
